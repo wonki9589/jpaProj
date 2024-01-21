@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import React, {useState, useEffect} from "react";
+import axios from 'axios';
 
 
 const RecordForm = ({numList, setNumList}) => {
@@ -20,15 +21,7 @@ const RecordForm = ({numList, setNumList}) => {
 
 }
 
-//const count = ({numList}) => {
-//    return(
-//        <h2>
-//        {numList.map(num) =>(
-//                <li> {num} </li>
-//        )}
-//        </h2>
-//    )
-//}
+
 
 const RecordList = ({numList}) =>{
      return (
@@ -64,6 +57,14 @@ const Input = () => {
 }
 
 const App = () => {
+
+    const [posts, setPosts] = useState([]);
+
+      axios({
+        method:'GET',
+         url:'https://jsonplaceholder.typicode.com/photos'
+     }).then(response => setPosts(response.data))
+
     const [numList, setNumList] = useState([]);
 
    return(
@@ -71,6 +72,15 @@ const App = () => {
     <RecordForm numList={numList} setNumList={setNumList} />
     <RecordList numList={numList} />
     <Input />
+
+     <ul>
+        {posts.map(post => (
+            <li key={post.id}>
+                <div>{post.title}</div>
+
+            </li>
+        ))}
+    </ul>
     </div>
    )
 }
