@@ -34,11 +34,34 @@ const RecordList = ({numList}) =>{
      return (
          <div>
              <h2> 기록된 숫자 </h2>
-             {numList.length > 0?1
-             :<div>기록없음</div>}
+             <h2> {numList.map((num) => ( <div>{num}</div>))} </h2>
+
          </div>
      )
  }
+
+
+const Input = () => {
+    const [text ,setText] = useState("");
+    const [boolean ,setBoolean] = useState(false);
+
+    let contents = <div>{text}
+                    <button onClick ={() => setBoolean(true)}>수정</button>
+                    </div>
+
+    if(boolean){
+    contents = <div><input type = "text" value ={text}
+                            onChange={(e) => { setText(e.target.value)}}
+                    />
+                    <button onClick = {() => setBoolean(false)}>수정</button>
+               </div>
+    }
+    return (
+    <>
+        {contents}
+    </>
+    )
+}
 
 const App = () => {
     const [numList, setNumList] = useState([]);
@@ -47,6 +70,7 @@ const App = () => {
    <div>
     <RecordForm numList={numList} setNumList={setNumList} />
     <RecordList numList={numList} />
+    <Input />
     </div>
    )
 }
