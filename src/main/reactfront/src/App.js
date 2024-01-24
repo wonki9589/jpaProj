@@ -1,90 +1,71 @@
 import logo from './logo.svg';
 import './App.css';
-import React, {useState, useEffect} from "react";
-import axios from 'axios';
+import TextField from '@mui/material/TextField';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
+import Link from '@mui/material/Link';
+import Grid from '@mui/material/Grid';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import Avatar from '@mui/material/Avatar';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
 
-
-const RecordForm = ({numList, setNumList}) => {
-    const [num , setNum] = useState(0)
-
-    return (
-        <div>
-            <div> 현재 숫자 : {num} </div>
-            <button onClick ={() => setNum(num +1)}>숫자 증가</button>
-            <button onClick ={() => setNum(num -1)}>숫자 감소</button>
-            <button onClick ={() => setNum(0)}>숫자 초기화</button>
-            <hr/>
-            <button onClick = {() => setNumList([...numList , num])}> 숫자 기록 </button>
-            <button onClick = {() => setNumList([])}> 숫자 초기화 </button>
-        </div>
-    )
-
+function App() {
+  return (
+     <Container component="main" maxWidth="xs">
+         <Box
+          sx={{
+            marginTop: 8,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
+         >
+        <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+         <LockOutlinedIcon />
+        </Avatar>
+        <Typography component="h1" variant="h5">
+          Sign in
+        </Typography>
+        <TextField
+         margin ="normal"
+         label="Email Address"
+         required
+         fullWidth
+         name="email"
+         autoComplete="email"
+         autoFocus
+         />
+        <TextField
+         label="Password"
+         type="password"
+         required
+         fullWidth
+         name="password"
+         autoComplete="current-password"
+         />
+         <FormControlLabel
+          control={<Checkbox value="remember"
+          color="primary" />}
+          label="Remember me"
+         />
+         <Button type="submit" fullWidth variant="contained"
+         sx={{ mt:3, mb:2}}>
+            Sign in
+          </Button>
+         <Grid container>
+          <Grid item xs>
+             <Link>Forgot password?</Link>
+          </Grid>
+          <Grid item>
+             <Link>Sign up</Link>
+          </Grid>
+         </Grid>
+      </Box>
+    </Container>
+  );
 }
-
-
-
-const RecordList = ({numList}) =>{
-     return (
-         <div>
-             <h2> 기록된 숫자 </h2>
-             <h2> {numList.map((num) => ( <div>{num}</div>))} </h2>
-
-         </div>
-     )
- }
-
-
-const Input = () => {
-    const [text ,setText] = useState("");
-    const [boolean ,setBoolean] = useState(false);
-
-    let contents = <div>{text}
-                    <button onClick ={() => setBoolean(true)}>수정</button>
-                    </div>
-
-    if(boolean){
-    contents = <div><input type = "text" value ={text}
-                            onChange={(e) => { setText(e.target.value)}}
-                    />
-                    <button onClick = {() => setBoolean(false)}>수정</button>
-               </div>
-    }
-    return (
-    <>
-        {contents}
-    </>
-    )
-}
-
-const App = () => {
-
-    const [posts, setPosts] = useState([]);
-
-      axios({
-        method:'GET',
-         url:'https://jsonplaceholder.typicode.com/photos'
-     }).then(response => setPosts(response.data))
-
-    const [numList, setNumList] = useState([]);
-
-   return(
-   <div>
-    <RecordForm numList={numList} setNumList={setNumList} />
-    <RecordList numList={numList} />
-    <Input />
-
-     <ul>
-        {posts.map(post => (
-            <li key={post.id}>
-                <div>{post.title}</div>
-
-            </li>
-        ))}
-    </ul>
-    </div>
-   )
-}
-
-
 
 export default App;
