@@ -1,7 +1,6 @@
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
@@ -9,6 +8,7 @@ import Avatar from '@mui/material/Avatar';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
+import { Link } from 'react-router-dom';
 
 
 
@@ -60,7 +60,7 @@ const login = () => {
                <Link>Forgot password?</Link>
             </Grid>
             <Grid item>
-               <Link>Sign up</Link>
+               <Link to={'/signup'}>Sign up</Link>
             </Grid>
            </Grid>
         </Box>
