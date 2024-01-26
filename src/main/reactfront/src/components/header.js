@@ -6,7 +6,7 @@ const header = () => {
             {/* Navbar & Hero Start */}
             <div className="container-xxl position-relative p-0">
                 <nav className="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
-                <a href="index.html" className="navbar-brand p-0">
+                <a href="/" className="navbar-brand p-0">
                     <h1 className="m-0">JPA Project</h1>
                     {/* <img src="img/logo.png" alt="Logo"> */}
                 </a>
@@ -17,7 +17,7 @@ const header = () => {
                     <div className="navbar-nav ms-auto py-0">
                     <a href="index.html" className="nav-item nav-link active">Home</a>
                     <a href="about.html" className="nav-item nav-link">About</a>
-                    <a href="service.html" className="nav-item nav-link">Service</a>
+                    <a href="service.html" czlassName="nav-item nav-link">Service</a>
                     <div className="nav-item dropdown">
                         <a href="#" className="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                         <div className="dropdown-menu m-0">
@@ -30,7 +30,7 @@ const header = () => {
                     </div>
                     <a href="contact.html" className="nav-item nav-link">Contact</a>
                     </div>
-                    <a href="login.html" className="btn btn-light rounded-pill text-primary py-2 px-4 ms-lg-5">login</a>
+                    <a href="./login" className="btn btn-light rounded-pill text-primary py-2 px-4 ms-lg-5">login</a>
                 </div>
                 </nav>
                 <div className="container-xxl bg-primary hero-header">
