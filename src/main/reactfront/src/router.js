@@ -10,20 +10,6 @@ import Login from './pages/login';
  
 
 
-const Introduce = () => {
-    const navigate = useNavigate(); 
-     
-  
-    const goToSign = () => {
-      navigate("/signUp");
-    }
-    const goToLogin = () =>{
-      navigate("/login");
-    }
-    const goToMain = () =>{
-      navigate("/");
-    }
- }  
  
 export default function router(){
     return(
