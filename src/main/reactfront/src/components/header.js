@@ -32,7 +32,7 @@ const header = () => {
                     </div>
                     <a href="./login" className="btn btn-light rounded-pill text-primary py-2 px-4 ms-lg-5">login</a>
                 </div>
-                </nav>
+                </nav> 
                 <div className="container-xxl bg-primary hero-header">
                 <div className="container">
                     <div className="row g-5 align-items-center">

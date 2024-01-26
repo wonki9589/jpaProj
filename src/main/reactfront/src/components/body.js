@@ -375,6 +375,6 @@ const body = () => {
         </div>
 
     )
-}
+} 
 
 export default body

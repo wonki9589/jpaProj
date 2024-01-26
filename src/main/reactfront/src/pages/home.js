@@ -6,7 +6,7 @@ import Header from '../components/header';
 
 
 
-const home = () => {
+const home = () => { 
     return (
         <div className="App">
             <Header />
