@@ -14,8 +14,9 @@ import java.util.List;
 @Slf4j
 public class HomeController {
 
-    @GetMapping("/api/hello")
-    public List<String> test() {
-        return Arrays.asList("hello","test022");
+    @GetMapping("/")
+    public List<String> test(){
+        log.info("wonki456");
+        return Arrays.asList("hello","wonki");
     }
 }
