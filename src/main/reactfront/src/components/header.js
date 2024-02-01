@@ -37,7 +37,7 @@ const header = () => {
                 <div className="container">
                     <div className="row g-5 align-items-center">
                     <div className="col-lg-6 text-center text-lg-start"><h1>To-Do List</h1>
-                        <p className="text-white pb-3 animated zoomIn" >1.mySql or MariaDB 바꾸기 <br></br>2. 백엔드에서 데이터 가져오기 <br></br>3.배포</p>
+                        <p className="text-white pb-3 animated zoomIn" > 2. 백엔드에서 데이터 가져오기 <br></br>3.배포</p>
                         <a href className="btn btn-outline-light rounded-pill border-2 py-3 px-5 animated slideInRight">Learn More</a>
                     </div>
                     <div className="col-lg-6 text-center text-lg-start">

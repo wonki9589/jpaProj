@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=edge"/>
+<title>Test results - OrderServiceTest</title>
+<link href="../css/base-style.css" rel="stylesheet" type="text/css"/>
+<link href="../css/style.css" rel="stylesheet" type="text/css"/>
+<script src="../js/report.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="content">
+<h1>OrderServiceTest</h1>
+<div class="breadcrumbs">
+<a href="../index.html">all</a> &gt; 
+<a href="../packages/com.example.jpaProject.service.html">com.example.jpaProject.service</a> &gt; OrderServiceTest</div>
+<div id="summary">
+<table>
+<tr>
+<td>
+<div class="summaryGroup">
+<table>
+<tr>
+<td>
+<div class="infoBox" id="tests">
+<div class="counter">3</div>
+<p>tests</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="failures">
+<div class="counter">0</div>
+<p>failures</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="ignored">
+<div class="counter">0</div>
+<p>ignored</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="duration">
+<div class="counter">0.015s</div>
+<p>duration</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</td>
+<td>
+<div class="infoBox success" id="successRate">
+<div class="percent">100%</div>
+<p>successful</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div id="tabs">
+<ul class="tabLinks">
+<li>
+<a href="#tab0">Tests</a>
+</li>
+<li>
+<a href="#tab1">Standard output</a>
+</li>
+</ul>
+<div id="tab0" class="tab">
+<h2>Tests</h2>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Duration</th>
+<th>Result</th>
+</tr>
+</thead>
+<tr>
+<td class="success">상품주문</td>
+<td class="success">0.006s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">상품주문_재고수량초과</td>
+<td class="success">0.005s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">주문취소</td>
+<td class="success">0.004s</td>
+<td class="success">passed</td>
+</tr>
+</table>
+</div>
+<div id="tab1" class="tab">
+<h2>Standard output</h2>
+<span class="code">
+<pre>2024-01-08T17:54:21.998+09:00 DEBUG 50695 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        next value for item_seq
+2024-01-08T17:54:21.998+09:00  INFO 50695 --- [    Test worker] p6spy                                    : #1704704061998 | took 0ms | statement | connection 6| url jdbc:h2:mem:testdb
+select next value for item_seq
+select next value for item_seq;
+2024-01-08T17:54:22.000+09:00  INFO 50695 --- [    Test worker] p6spy                                    : #1704704062000 | took 0ms | rollback | connection 6| url jdbc:h2:mem:testdb
+
+;
+2024-01-08T17:54:22.003+09:00 DEBUG 50695 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        next value for item_seq
+2024-01-08T17:54:22.003+09:00  INFO 50695 --- [    Test worker] p6spy                                    : #1704704062003 | took 0ms | statement | connection 7| url jdbc:h2:mem:testdb
+select next value for item_seq
+select next value for item_seq;
+2024-01-08T17:54:22.004+09:00 DEBUG 50695 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        next value for orders_seq
+2024-01-08T17:54:22.004+09:00  INFO 50695 --- [    Test worker] p6spy                                    : #1704704062004 | took 0ms | statement | connection 7| url jdbc:h2:mem:testdb
+select next value for orders_seq
+select next value for orders_seq;
+2024-01-08T17:54:22.005+09:00 DEBUG 50695 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        next value for delivery_seq
+2024-01-08T17:54:22.005+09:00  INFO 50695 --- [    Test worker] p6spy                                    : #1704704062005 | took 0ms | statement | connection 7| url jdbc:h2:mem:testdb
+select next value for delivery_seq
+select next value for delivery_seq;
+2024-01-08T17:54:22.006+09:00 DEBUG 50695 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        next value for order_item_seq
+2024-01-08T17:54:22.006+09:00  INFO 50695 --- [    Test worker] p6spy                                    : #1704704062006 | took 0ms | statement | connection 7| url jdbc:h2:mem:testdb
+select next value for order_item_seq
+select next value for order_item_seq;
+2024-01-08T17:54:22.007+09:00  INFO 50695 --- [    Test worker] p6spy                                    : #1704704062007 | took 0ms | rollback | connection 7| url jdbc:h2:mem:testdb
+
+;
+2024-01-08T17:54:22.010+09:00 DEBUG 50695 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        next value for orders_seq
+2024-01-08T17:54:22.010+09:00  INFO 50695 --- [    Test worker] p6spy                                    : #1704704062010 | took 0ms | statement | connection 8| url jdbc:h2:mem:testdb
+select next value for orders_seq
+select next value for orders_seq;
+2024-01-08T17:54:22.010+09:00 DEBUG 50695 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        next value for delivery_seq
+2024-01-08T17:54:22.010+09:00  INFO 50695 --- [    Test worker] p6spy                                    : #1704704062010 | took 0ms | statement | connection 8| url jdbc:h2:mem:testdb
+select next value for delivery_seq
+select next value for delivery_seq;
+2024-01-08T17:54:22.011+09:00 DEBUG 50695 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        next value for order_item_seq
+2024-01-08T17:54:22.011+09:00  INFO 50695 --- [    Test worker] p6spy                                    : #1704704062011 | took 0ms | statement | connection 8| url jdbc:h2:mem:testdb
+select next value for order_item_seq
+select next value for order_item_seq;
+2024-01-08T17:54:22.012+09:00  INFO 50695 --- [    Test worker] p6spy                                    : #1704704062012 | took 0ms | rollback | connection 8| url jdbc:h2:mem:testdb
+
+;
+</pre>
+</span>
+</div>
+</div>
+<div id="footer">
+<p>
+<div>
+<label class="hidden" id="label-for-line-wrapping-toggle" for="line-wrapping-toggle">Wrap lines
+<input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
+</label>
+</div>Generated by 
+<a href="http://www.gradle.org">Gradle 8.5</a> at 2024. 1. 8. 오후 5:54:22</p>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.example.jpaProject.service.MemberServiceTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2024-01-08T08:54:21" hostname="wonkiui-MacBookAir.local" time="0.275">
+  <properties/>
+  <testcase name="중복_회원_예외()" classname="com.example.jpaProject.service.MemberServiceTest" time="0.266"/>
+  <testcase name="회원가입()" classname="com.example.jpaProject.service.MemberServiceTest" time="0.008"/>
+  <system-out><![CDATA[2024-01-08T17:54:21.706+09:00  INFO 50695 --- [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.example.jpaProject.service.MemberServiceTest]: MemberServiceTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2024-01-08T17:54:21.707+09:00  INFO 50695 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.example.jpaProject.JpaProjectApplication for test class com.example.jpaProject.service.MemberServiceTest
+2024-01-08T17:54:21.935+09:00 DEBUG 50695 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        m1_0.member_id,
+        m1_0.city,
+        m1_0.street,
+        m1_0.zipcode,
+        m1_0.name 
+    from
+        member m1_0 
+    where
+        m1_0.name=?
+2024-01-08T17:54:21.936+09:00 TRACE 50695 --- [    Test worker] org.hibernate.orm.jdbc.bind              : binding parameter [1] as [VARCHAR] - [Mo]
+2024-01-08T17:54:21.937+09:00  INFO 50695 --- [    Test worker] p6spy                                    : #1704704061937 | took 0ms | statement | connection 4| url jdbc:h2:mem:testdb
+select m1_0.member_id,m1_0.city,m1_0.street,m1_0.zipcode,m1_0.name from member m1_0 where m1_0.name=?
+select m1_0.member_id,m1_0.city,m1_0.street,m1_0.zipcode,m1_0.name from member m1_0 where m1_0.name='Mo';
+2024-01-08T17:54:21.941+09:00 DEBUG 50695 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        next value for member_seq
+2024-01-08T17:54:21.943+09:00  INFO 50695 --- [    Test worker] p6spy                                    : #1704704061943 | took 0ms | statement | connection 4| url jdbc:h2:mem:testdb
+select next value for member_seq
+select next value for member_seq;
+2024-01-08T17:54:21.964+09:00 DEBUG 50695 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        member
+        (city,street,zipcode,name,member_id) 
+    values
+        (?,?,?,?,?)
+2024-01-08T17:54:21.966+09:00 TRACE 50695 --- [    Test worker] org.hibernate.orm.jdbc.bind              : binding parameter [1] as [VARCHAR] - [null]
+2024-01-08T17:54:21.966+09:00 TRACE 50695 --- [    Test worker] org.hibernate.orm.jdbc.bind              : binding parameter [2] as [VARCHAR] - [null]
+2024-01-08T17:54:21.966+09:00 TRACE 50695 --- [    Test worker] org.hibernate.orm.jdbc.bind              : binding parameter [3] as [VARCHAR] - [null]
+2024-01-08T17:54:21.966+09:00 TRACE 50695 --- [    Test worker] org.hibernate.orm.jdbc.bind              : binding parameter [4] as [VARCHAR] - [Mo]
+2024-01-08T17:54:21.966+09:00 TRACE 50695 --- [    Test worker] org.hibernate.orm.jdbc.bind              : binding parameter [5] as [BIGINT] - [1]
+2024-01-08T17:54:21.967+09:00  INFO 50695 --- [    Test worker] p6spy                                    : #1704704061967 | took 0ms | statement | connection 4| url jdbc:h2:mem:testdb
+insert into member (city,street,zipcode,name,member_id) values (?,?,?,?,?)
+insert into member (city,street,zipcode,name,member_id) values (NULL,NULL,NULL,'Mo',1);
+2024-01-08T17:54:21.969+09:00 DEBUG 50695 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        m1_0.member_id,
+        m1_0.city,
+        m1_0.street,
+        m1_0.zipcode,
+        m1_0.name 
+    from
+        member m1_0 
+    where
+        m1_0.name=?
+2024-01-08T17:54:21.970+09:00 TRACE 50695 --- [    Test worker] org.hibernate.orm.jdbc.bind              : binding parameter [1] as [VARCHAR] - [Mo]
+2024-01-08T17:54:21.970+09:00  INFO 50695 --- [    Test worker] p6spy                                    : #1704704061970 | took 0ms | statement | connection 4| url jdbc:h2:mem:testdb
+select m1_0.member_id,m1_0.city,m1_0.street,m1_0.zipcode,m1_0.name from member m1_0 where m1_0.name=?
+select m1_0.member_id,m1_0.city,m1_0.street,m1_0.zipcode,m1_0.name from member m1_0 where m1_0.name='Mo';
+2024-01-08T17:54:21.975+09:00  INFO 50695 --- [    Test worker] p6spy                                    : #1704704061975 | took 0ms | rollback | connection 4| url jdbc:h2:mem:testdb
+
+;
+2024-01-08T17:54:21.979+09:00 DEBUG 50695 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        m1_0.member_id,
+        m1_0.city,
+        m1_0.street,
+        m1_0.zipcode,
+        m1_0.name 
+    from
+        member m1_0 
+    where
+        m1_0.name=?
+2024-01-08T17:54:21.979+09:00 TRACE 50695 --- [    Test worker] org.hibernate.orm.jdbc.bind              : binding parameter [1] as [VARCHAR] - [kim]
+2024-01-08T17:54:21.979+09:00  INFO 50695 --- [    Test worker] p6spy                                    : #1704704061979 | took 0ms | statement | connection 5| url jdbc:h2:mem:testdb
+select m1_0.member_id,m1_0.city,m1_0.street,m1_0.zipcode,m1_0.name from member m1_0 where m1_0.name=?
+select m1_0.member_id,m1_0.city,m1_0.street,m1_0.zipcode,m1_0.name from member m1_0 where m1_0.name='kim';
+2024-01-08T17:54:21.980+09:00 DEBUG 50695 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        next value for member_seq
+2024-01-08T17:54:21.980+09:00  INFO 50695 --- [    Test worker] p6spy                                    : #1704704061980 | took 0ms | statement | connection 5| url jdbc:h2:mem:testdb
+select next value for member_seq
+select next value for member_seq;
+2024-01-08T17:54:21.985+09:00  INFO 50695 --- [    Test worker] p6spy                                    : #1704704061985 | took 0ms | rollback | connection 5| url jdbc:h2:mem:testdb
+
+;
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

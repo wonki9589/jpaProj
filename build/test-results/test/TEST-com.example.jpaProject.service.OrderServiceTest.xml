@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.example.jpaProject.service.OrderServiceTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2024-01-08T08:54:21" hostname="wonkiui-MacBookAir.local" time="0.016">
+  <properties/>
+  <testcase name="상품주문_재고수량초과" classname="com.example.jpaProject.service.OrderServiceTest" time="0.005"/>
+  <testcase name="상품주문" classname="com.example.jpaProject.service.OrderServiceTest" time="0.006"/>
+  <testcase name="주문취소" classname="com.example.jpaProject.service.OrderServiceTest" time="0.004"/>
+  <system-out><![CDATA[2024-01-08T17:54:21.998+09:00 DEBUG 50695 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        next value for item_seq
+2024-01-08T17:54:21.998+09:00  INFO 50695 --- [    Test worker] p6spy                                    : #1704704061998 | took 0ms | statement | connection 6| url jdbc:h2:mem:testdb
+select next value for item_seq
+select next value for item_seq;
+2024-01-08T17:54:22.000+09:00  INFO 50695 --- [    Test worker] p6spy                                    : #1704704062000 | took 0ms | rollback | connection 6| url jdbc:h2:mem:testdb
+
+;
+2024-01-08T17:54:22.003+09:00 DEBUG 50695 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        next value for item_seq
+2024-01-08T17:54:22.003+09:00  INFO 50695 --- [    Test worker] p6spy                                    : #1704704062003 | took 0ms | statement | connection 7| url jdbc:h2:mem:testdb
+select next value for item_seq
+select next value for item_seq;
+2024-01-08T17:54:22.004+09:00 DEBUG 50695 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        next value for orders_seq
+2024-01-08T17:54:22.004+09:00  INFO 50695 --- [    Test worker] p6spy                                    : #1704704062004 | took 0ms | statement | connection 7| url jdbc:h2:mem:testdb
+select next value for orders_seq
+select next value for orders_seq;
+2024-01-08T17:54:22.005+09:00 DEBUG 50695 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        next value for delivery_seq
+2024-01-08T17:54:22.005+09:00  INFO 50695 --- [    Test worker] p6spy                                    : #1704704062005 | took 0ms | statement | connection 7| url jdbc:h2:mem:testdb
+select next value for delivery_seq
+select next value for delivery_seq;
+2024-01-08T17:54:22.006+09:00 DEBUG 50695 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        next value for order_item_seq
+2024-01-08T17:54:22.006+09:00  INFO 50695 --- [    Test worker] p6spy                                    : #1704704062006 | took 0ms | statement | connection 7| url jdbc:h2:mem:testdb
+select next value for order_item_seq
+select next value for order_item_seq;
+2024-01-08T17:54:22.007+09:00  INFO 50695 --- [    Test worker] p6spy                                    : #1704704062007 | took 0ms | rollback | connection 7| url jdbc:h2:mem:testdb
+
+;
+2024-01-08T17:54:22.010+09:00 DEBUG 50695 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        next value for orders_seq
+2024-01-08T17:54:22.010+09:00  INFO 50695 --- [    Test worker] p6spy                                    : #1704704062010 | took 0ms | statement | connection 8| url jdbc:h2:mem:testdb
+select next value for orders_seq
+select next value for orders_seq;
+2024-01-08T17:54:22.010+09:00 DEBUG 50695 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        next value for delivery_seq
+2024-01-08T17:54:22.010+09:00  INFO 50695 --- [    Test worker] p6spy                                    : #1704704062010 | took 0ms | statement | connection 8| url jdbc:h2:mem:testdb
+select next value for delivery_seq
+select next value for delivery_seq;
+2024-01-08T17:54:22.011+09:00 DEBUG 50695 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        next value for order_item_seq
+2024-01-08T17:54:22.011+09:00  INFO 50695 --- [    Test worker] p6spy                                    : #1704704062011 | took 0ms | statement | connection 8| url jdbc:h2:mem:testdb
+select next value for order_item_seq
+select next value for order_item_seq;
+2024-01-08T17:54:22.012+09:00  INFO 50695 --- [    Test worker] p6spy                                    : #1704704062012 | took 0ms | rollback | connection 8| url jdbc:h2:mem:testdb
+
+;
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
