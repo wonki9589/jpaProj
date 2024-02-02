@@ -1,4 +1,4 @@
-package com.example.jpaProject;
+package jpaProject.jpashop;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

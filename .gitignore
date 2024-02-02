@@ -1,3 +1,7 @@
-node_modules
-.DS_Store\
-!src/test/java/jpaProject/jpashop/service/OrderServiceTest.java
+node_modules/
+build/
+out/
+.gradle/
+.cashe/
+.DS_Store/
+

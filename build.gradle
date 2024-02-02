@@ -28,14 +28,13 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok:1.18.22'
 	implementation 'junit:junit:4.13.1'
 	implementation 'junit:junit:4.13.1'
-	implementation 'mysql:mysql-connector-java:8.3.0'
+	implementation group: 'com.mysql', name: 'mysql-connector-j', version: '8.3.0'
 
 	implementation 'com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.9.0'
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
-	implementation files('libs/mysql-connector-j-8.3.0.jar')
 
 	compileOnly 'org.projectlombok:lombok'
-	runtimeOnly 'mysql:mysql-connector-java'
+	runtimeOnly 'com.mysql:mysql-connector-j'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation("org.junit.vintage:junit-vintage-engine") {

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class TestController {
 
-    @GetMapping("/data-test")
+    @GetMapping("/api/test")
     public String dataTest(){
         return "컨트롤러 탔나 ?";
     }

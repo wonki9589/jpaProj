@@ -1,7 +1,8 @@
-package com.example.jpaProject.service;
+package jpaProject.jpashop.service;
 
-import com.example.jpaProject.domain.Member;
-import com.example.jpaProject.repository.MemberRepository;
+import jpaProject.jpashop.domain.Member;
+import jpaProject.jpashop.repository.MemberRepository;
+import jpaProject.jpashop.repository.MemberRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class MemberServiceTest {
 
     @Autowired MemberService memberService;
-    @Autowired MemberRepository memberRepository;
+    @Autowired
+    MemberRepository memberRepository;
 
     @Test
     //@Rollback(value = false)

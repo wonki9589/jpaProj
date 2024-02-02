@@ -1,13 +1,13 @@
-package com.example.jpaProject.service;
+package jpaProject.jpashop.service;
 
-import com.example.jpaProject.domain.Address;
-import com.example.jpaProject.domain.Member;
-import com.example.jpaProject.domain.Order;
-import com.example.jpaProject.domain.OrderStatus;
-import com.example.jpaProject.domain.item.Book;
-import com.example.jpaProject.domain.item.Item;
-import com.example.jpaProject.exception.NotEnoughStockException;
-import com.example.jpaProject.repository.OrderRepository;
+import jpaProject.jpashop.domain.Address;
+import jpaProject.jpashop.domain.Member;
+import jpaProject.jpashop.domain.Order;
+import jpaProject.jpashop.domain.OrderStatus;
+import jpaProject.jpashop.domain.item.Book;
+import jpaProject.jpashop.domain.item.Item;
+import jpaProject.jpashop.exception.NotEnoughStockException;
+import jpaProject.jpashop.repository.OrderRepository;
 import jakarta.persistence.EntityManager;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -41,7 +41,7 @@ public class OrderServiceTest {
         //then
         Order getOrder = orderRepository.findOne(orderId);
 
-        assertEquals("상품 주문시 상태는 ORDER", OrderStatus.ORDER,getOrder.getStatus());
+        assertEquals("상품 ㅌㅌ문시 상태는 ORDER", OrderStatus.ORDER,getOrder.getStatus());
         assertEquals("주문한 상품 종류 수가 정확해야 한다",1,getOrder.getOrderItems().size());
         assertEquals("주문 가격은 가격 * 수량이다.",10000 * orderCount,getOrder.getTotalPrice());
         assertEquals("주문 수량만큼 재고가 줄어야 한다.",7,book.getStockQuantity());

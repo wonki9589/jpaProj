@@ -1,9 +1,4 @@
 import './App.css';
-import { useNavigate } from "react-router-dom";
-import ReportWebVital from "./reportWebVitals";
-import Body from './components/body';
-import Footer from './components/footer';
-import Header from './components/header';
 import SignUp from './pages/signup';
 import Login from './pages/login';
 import Home from './pages/home';
@@ -20,7 +15,7 @@ function App() {
       <div className="App">
         <Routes> 
           <Route exact path="/" element={<Home />} />
-          <Route path="/datatest/" element={<DataTest />}/>
+          <Route path="/api/test" element={<DataTest />}/>
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/about" element={<About />}/>
