@@ -28,21 +28,23 @@ function Copyright(props) {
 
 // TODO remove, this demo shouldn't need to reset the theme.
 
-const defaultTheme = createTheme(); 
+const defaultTheme = createTheme();
 
-export default function SignUp() {
+export default function signUp() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     /*
-        인풋 데이터 콘솔로 찍는 곳 
-        서버로 보내야 할 데이터들 
+        인풋 데이터 콘솔로 찍는 곳
+        서버로 보내야 할 데이터들
     */
     console.log({
-      firstName : data.get('firstName'),
-      lastName  : data.get('lastName'),
+      Name : data.get('name'),
       email: data.get('email'),
       password: data.get('password'),
+      city : data.get('city'),
+      street : data.get('street'),
+      zipcode : data.get('zipcode')
     });
   };
 
@@ -64,27 +66,17 @@ export default function SignUp() {
           <Typography component="h1" variant="h5">
             Sign up
           </Typography>
-          <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+          <Box component="form"  onSubmit={handleSubmit} sx={{ mt: 3 }}>
             <Grid container spacing={2}>
-              <Grid item xs={12} sm={6}>
+              <Grid item xs={12}>
                 <TextField
                   autoComplete="given-name"
-                  name="firstName"
+                  name="name"
                   required
                   fullWidth
-                  id="firstName"
-                  label="First Name"
+                  id="name"
+                  label="name"
                   autoFocus
-                />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  required
-                  fullWidth
-                  id="lastName"
-                  label="Last Name"
-                  name="lastName"
-                  autoComplete="family-name"
                 />
               </Grid>
               <Grid item xs={12}>
@@ -109,6 +101,39 @@ export default function SignUp() {
                 />
               </Grid>
               <Grid item xs={12}>
+                  <TextField
+                    required
+                    fullWidth
+                    name="city"
+                    label="city"
+                    type="city"
+                    id="city"
+                    autoComplete="new-city"
+                  />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  name="street"
+                  label="street"
+                  type="street"
+                  id="street"
+                  autoComplete="new-street"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                   <TextField
+                     required
+                     fullWidth
+                     name="zipcode"
+                     label="zipcode"
+                     type="zipcode"
+                     id="zipcode"
+                     autoComplete="new-zipcode"
+                   />
+              </Grid>
+              <Grid item xs={12}>
                 <FormControlLabel
                   control={<Checkbox value="allowExtraEmails" color="primary" />}
                   label="I want to receive inspiration, marketing promotions and updates via email."
@@ -119,13 +144,13 @@ export default function SignUp() {
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2 }} 
+              sx={{ mt: 3, mb: 2 }}
             >
               Sign Up
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link href="/login" variant="body2">
                   Already have an account? Sign in
                 </Link>
               </Grid>
