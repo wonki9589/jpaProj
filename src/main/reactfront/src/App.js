@@ -16,8 +16,8 @@ function App() {
         <Routes> 
           <Route exact path="/" element={<Home />} />
           <Route path="/api/test" element={<DataTest />}/>
-          <Route path="/login" element={<Login />} />
-          <Route path="/member/new" element={<SignUp />} />
+          <Route path="/api/login" element={<Login />} />
+          <Route path="/api/signup" element={<SignUp />} />
           <Route path="/about" element={<About />}/>
         </Routes>
       </div>

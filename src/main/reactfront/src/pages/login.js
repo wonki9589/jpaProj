@@ -11,7 +11,6 @@ import Container from '@mui/material/Container';
 import { Link } from 'react-router-dom';
 
 
-
 const login = () => {
     return (
        <Container component="main" maxWidth="xs">
@@ -60,7 +59,7 @@ const login = () => {
                <Link>Forgot password?</Link>
             </Grid>
             <Grid item>
-               <Link to={'/signup'}>Sign up</Link>
+               <Link to={'/api/signup'}>Sign up</Link>
             </Grid>
            </Grid>
         </Box>

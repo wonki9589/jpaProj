@@ -1,4 +1,6 @@
-import * as React from 'react';
+import React, { useState } from 'react';
+import API from '../api.js'
+import { useNavigate } from 'react-router-dom';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -12,6 +14,9 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+
+
 
 function Copyright(props) {
   return (
@@ -29,23 +34,50 @@ function Copyright(props) {
 // TODO remove, this demo shouldn't need to reset the theme.
 
 const defaultTheme = createTheme();
+//axios.defaults.withCredentials = true; // withCredentials 전역 설정
 
-export default function signUp() {
+
+export default function SignUp() {
+  const navigate = { useNavigate};
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [city, setCity] = useState('');
+  const [street, setStreet] = useState('');
+  const [zipcode, setZipcode] = useState('');
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
+//    const data = new FormData(event.currentTarget);
     /*
         인풋 데이터 콘솔로 찍는 곳
         서버로 보내야 할 데이터들
     */
-    console.log({
-      Name : data.get('name'),
-      email: data.get('email'),
-      password: data.get('password'),
-      city : data.get('city'),
-      street : data.get('street'),
-      zipcode : data.get('zipcode')
-    });
+    API
+    .post('/member/new',{
+      name : name,
+      email: email,
+      password: password,
+      city : city,
+      street : street,
+      zipcode : zipcode
+    })
+    .then((response) => {
+        console.log({
+              name : name,
+              email: email,
+              password: password,
+              city : city,
+              street : street,
+              zipcode : zipcode
+        });
+        console.log(' success!!!',response.data );
+        navigate('/');
+    })
+    .catch((error) => {
+        console.log('error !!!',error.response);
+    })
+
   };
 
   return (
@@ -77,6 +109,11 @@ export default function signUp() {
                   id="name"
                   label="name"
                   autoFocus
+                  value = {name}
+                  onChange= {(e) => {
+                        setName(e.target.value);
+                    }
+                  }
                 />
               </Grid>
               <Grid item xs={12}>
@@ -87,6 +124,11 @@ export default function signUp() {
                   label="Email Address"
                   name="email"
                   autoComplete="email"
+                  value = {email}
+                  onChange= {(e) => {
+                      setEmail(e.target.value);
+                      }
+                  }
                 />
               </Grid>
               <Grid item xs={12}>
@@ -98,6 +140,11 @@ export default function signUp() {
                   type="password"
                   id="password"
                   autoComplete="new-password"
+                  value = {password}
+                  onChange= {(e) => {
+                      setPassword(e.target.value);
+                    }
+                 }
                 />
               </Grid>
               <Grid item xs={12}>
@@ -109,6 +156,11 @@ export default function signUp() {
                     type="city"
                     id="city"
                     autoComplete="new-city"
+                    value = {city}
+                    onChange= {(e) => {
+                      setCity(e.target.value);
+                      }
+                    }
                   />
               </Grid>
               <Grid item xs={12}>
@@ -120,6 +172,11 @@ export default function signUp() {
                   type="street"
                   id="street"
                   autoComplete="new-street"
+                  value = {street}
+                  onChange= {(e) => {
+                     setStreet(e.target.value);
+                    }
+                  }
                 />
               </Grid>
               <Grid item xs={12}>
@@ -131,6 +188,11 @@ export default function signUp() {
                      type="zipcode"
                      id="zipcode"
                      autoComplete="new-zipcode"
+                     value = {zipcode}
+                     onChange= {(e) => {
+                        setZipcode(e.target.value);
+                       }
+                     }
                    />
               </Grid>
               <Grid item xs={12}>
@@ -150,7 +212,7 @@ export default function signUp() {
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link href="/login" variant="body2">
+                <Link href="/api/login" variant="body2">
                   Already have an account? Sign in
                 </Link>
               </Grid>
