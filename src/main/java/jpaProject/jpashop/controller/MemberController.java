@@ -8,14 +8,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
 
-@Controller
+@RestController
 @RequiredArgsConstructor
 public class MemberController {
 
@@ -27,7 +24,6 @@ public class MemberController {
         return "get 성공 ";
     }
 
-    @ResponseBody
     @PostMapping("/api/member/new")
     public String create(@RequestBody MemberForm memberForm) {
 
@@ -39,9 +35,10 @@ public class MemberController {
 
         Member member = new Member();
         member.setName(memberForm.getName());
+        member.setPassword(memberForm.getPassword());
         member.setAddress(address);
 
         memberService.join(member);
-        return "post 성공 ! !" ;
+        return "redirect:/";
     }
 }
