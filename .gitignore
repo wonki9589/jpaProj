@@ -1,5 +1,7 @@
 node_modules/
+node_modules/.cashe
 src/main/reactfront/node_modules/
+../../../out/production/classes/
 build/
 out/
 .gradle/

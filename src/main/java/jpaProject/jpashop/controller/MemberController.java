@@ -20,10 +20,10 @@ public class MemberController {
 
     private final MemberService memberService;
 
-    @GetMapping("/api/member")
+    @GetMapping("/api/member/new")
     public String createForm(Model model) {
-        //model.addAttribute("memberForm", new MemberForm());
-        return "get 성공 ";
+        model.addAttribute("data", "redirect 성공 ?");
+        return "hi";
     }
 
     @ResponseBody
@@ -42,6 +42,6 @@ public class MemberController {
         member.setAddress(address);
 
         memberService.join(member);
-        return "redirect:/";
+        return "redirect:/api/login";
     }
 }

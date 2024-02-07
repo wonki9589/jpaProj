@@ -19,7 +19,7 @@ const header = () => {
                     <div className="navbar-nav ms-auto py-0">
                     <a href="index.html" className="nav-item nav-link active">Home</a>
                     <a href="about.html" className="nav-item nav-link">About</a>
-                    <a href="service.html" czlassName="nav-item nav-link">Service</a>
+                    <a href="service.html" className="nav-item nav-link">Service</a>
                     <div className="nav-item dropdown">
                         <a href="#" className="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                         <div className="dropdown-menu m-0">
@@ -32,16 +32,20 @@ const header = () => {
                     </div>
                     <a href="contact.html" className="nav-item nav-link">Contact</a>
                     </div>
-                    {/* <BrowserRouter>
-                    <Link to="/api/login" className="btn btn-light rounded-pill text-primary py-2 px-4 ms-lg-5">login</Link>
-                    </BrowserRouter> */}
+
+                    <a href="/api/login" className="btn btn-light rounded-pill text-primary py-2 px-4 ms-lg-5">login</a>
+
                 </div>
                 </nav>
                 <div className="container-xxl bg-primary hero-header">
                 <div className="container">
                     <div className="row g-5 align-items-center">
                     <div className="col-lg-6 text-center text-lg-start"><h1>To-Do List</h1>
-                        <p className="text-white pb-3 animated zoomIn" > 2. 백엔드에서 데이터 가져오기 <br></br>3.배포</p>
+                        <p className="text-white pb-3 animated zoomIn" >
+                         2. 로그인 서비스 구현
+                         3.Redirect 작동안함
+                         4. 아이디찾기 기능 구현
+                         </p>
                         <a href className="btn btn-outline-light rounded-pill border-2 py-3 px-5 animated slideInRight">Learn More</a>
                     </div>
                     <div className="col-lg-6 text-center text-lg-start">
