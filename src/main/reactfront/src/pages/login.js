@@ -8,7 +8,8 @@ import Avatar from '@mui/material/Avatar';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
-import { Link } from 'react-router-dom';
+import Link from '@mui/material/Link';
+import API from '../api.js'
 
 
 const login = () => {
@@ -59,7 +60,7 @@ const login = () => {
                <Link>Forgot password?</Link>
             </Grid>
             <Grid item>
-               <Link to={'/api/signup'}>Sign up</Link>
+                 <Link href="/api/signup" variant="body2"> Sign up</Link>
             </Grid>
            </Grid>
         </Box>

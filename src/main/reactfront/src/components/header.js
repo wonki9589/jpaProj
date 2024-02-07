@@ -1,4 +1,6 @@
 import React from 'react'
+// import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+
 
 const header = () => {
     return (
@@ -30,9 +32,11 @@ const header = () => {
                     </div>
                     <a href="contact.html" className="nav-item nav-link">Contact</a>
                     </div>
-                    <a href="./login" className="btn btn-light rounded-pill text-primary py-2 px-4 ms-lg-5">login</a>
+                    {/* <BrowserRouter>
+                    <Link to="/api/login" className="btn btn-light rounded-pill text-primary py-2 px-4 ms-lg-5">login</Link>
+                    </BrowserRouter> */}
                 </div>
-                </nav> 
+                </nav>
                 <div className="container-xxl bg-primary hero-header">
                 <div className="container">
                     <div className="row g-5 align-items-center">

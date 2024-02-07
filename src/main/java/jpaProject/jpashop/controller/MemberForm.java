@@ -7,7 +7,6 @@ import org.hibernate.annotations.NotFound;
 
 @Getter @Setter
 public class MemberForm {
-
     /**
      * wonki 2/4 회원가입 엔티티 추가
      *     @NotEmpty(message = "회원 이름은 필수 입니다.")

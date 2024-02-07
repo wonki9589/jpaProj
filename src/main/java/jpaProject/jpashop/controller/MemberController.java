@@ -1,5 +1,6 @@
 package jpaProject.jpashop.controller;
 
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import jpaProject.jpashop.domain.Address;
 import jpaProject.jpashop.domain.Member;
@@ -10,9 +11,10 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.Arrays;
 
-@RestController
+@Controller
 @RequiredArgsConstructor
 public class MemberController {
 
@@ -24,8 +26,9 @@ public class MemberController {
         return "get 성공 ";
     }
 
+    @ResponseBody
     @PostMapping("/api/member/new")
-    public String create(@RequestBody MemberForm memberForm) {
+    public String create(@RequestBody MemberForm memberForm){
 
 //        if (bindingResult.hasErrors()) {
 //            return "redirect:/";
