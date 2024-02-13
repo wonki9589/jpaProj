@@ -72,8 +72,8 @@ export default function SignUp() {
               zipcode : zipcode
         });
         console.log(' success!!!',response.data );
-//        navigate('/');
-    })
+    }
+    )
     .catch((error) => {
         console.log('error !!!',error.response);
     })

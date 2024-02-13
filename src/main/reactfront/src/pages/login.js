@@ -9,7 +9,8 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Link from '@mui/material/Link';
-import API from '../api.js'
+import API from '../api.js';
+import DataTest from './login.js';
 
 
 const login = () => {
@@ -57,7 +58,7 @@ const login = () => {
             </Button>
            <Grid container>
             <Grid item xs>
-               <Link>Forgot password?</Link>
+               <Link href="/api/member/new">Forgot password?</Link>
             </Grid>
             <Grid item>
                  <Link href="/api/signup" variant="body2"> Sign up</Link>
