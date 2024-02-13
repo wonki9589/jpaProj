@@ -6,7 +6,8 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: none
+#       ddl -auto : create -> none 기존 테이블 생성시 더이상 생성하지말라는 none 으로 수정
     properties:
       hibernate:
   #      show_sql: true
