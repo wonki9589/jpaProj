@@ -41,8 +41,9 @@ public class MemberService {
     }
 
     private void validateDuplicateMember(Member member){
-        List<Member> findMembers = memberRepository.findByName(member.getName());
-        if(!findMembers.isEmpty()){
+        Member members = memberRepository.findByName(member.getName());
+        String memberName = members.getName();
+        if(memberName != null){
             throw new IllegalStateException("이미 존재하는 회원입니다.");
         }
     }
@@ -63,12 +64,12 @@ public class MemberService {
     public UserDetails loadUserByUsername(Member member) throws UsernameNotFoundException {
 
         //DB에서 조회
-        List<Member> userName =  memberRepository.findByName(member.getName());
+        Member userName =  memberRepository.findByName(member.getName());
 
         System.out.println("userName" + userName);
         if (userName != null) {
             //member에  담아서 return하면 AutneticationManager가 검증 
-            return new CustomUserDetails((Member) userName);
+            return new CustomUserDetails(userName);
         }
         return null;
     }

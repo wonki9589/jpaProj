@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -52,20 +53,17 @@ public class MemberController {
         member.setAddress(address);
 
         memberService.join(member);
-        return "post 성공";
+        return "회원가입 ok";
     }
     @ResponseBody
     @PostMapping("/api/login")
     public String loginProcess(@RequestBody Member member){
         System.out.println(member.getName());
 
-//        Member userData = memberService.findOne(member.getId());
-//        if(userData != null){
-//            ret
-//        }
+        memberService.loadUserByUsername(member);
 
 
-        return "join ok";
+        return "로그인 ok";
     }
 
 }
