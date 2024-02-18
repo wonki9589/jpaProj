@@ -4,6 +4,8 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import jpaProject.jpashop.domain.Address;
 import jpaProject.jpashop.domain.Member;
+import jpaProject.jpashop.repository.MemberRepository;
+import jpaProject.jpashop.service.CustomUserDetailsService;
 import jpaProject.jpashop.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
@@ -47,7 +49,7 @@ public class MemberController {
         Address address = new Address(memberForm.getCity(),memberForm.getStreet(),memberForm.getZipcode());
 
         Member member = new Member();
-        member.setName(memberForm.getName());
+        member.setUsername(memberForm.getUsername());
         member.setPassword(memberForm.getPassword());
 
         member.setAddress(address);
@@ -55,15 +57,15 @@ public class MemberController {
         memberService.join(member);
         return "회원가입 ok";
     }
-    @ResponseBody
-    @PostMapping("/api/login")
-    public String loginProcess(@RequestBody Member member){
-        System.out.println(member.getName());
-
-        memberService.loadUserByUsername(member);
-
-
-        return "로그인 ok";
-    }
+//    @ResponseBody
+//    @PostMapping("/api/login")
+//    public String loginProcess(@RequestBody Member member){
+//
+//
+//        CustomUserDetailsService.loadUserByUsername(member.getName());
+//
+//
+//        return "로그인 ok";
+//    }
 
 }

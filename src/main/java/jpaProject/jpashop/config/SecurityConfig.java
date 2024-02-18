@@ -1,6 +1,7 @@
 package jpaProject.jpashop.config;
 
 import jakarta.servlet.http.HttpServletRequest;
+import jpaProject.jpashop.jwt.JWTUtil;
 import jpaProject.jpashop.jwt.LoginFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -24,10 +25,13 @@ public class SecurityConfig {
 
     //AuthenticationManager가 인자로 받을 AuthenticationConfiguraion 객체 생성자 주입
     private final AuthenticationConfiguration authenticationConfiguration;
+    //JWTUtil 주입
+    //private final JWTUtil jwtUtil;
 
     public SecurityConfig(AuthenticationConfiguration authenticationConfiguration) {
 
         this.authenticationConfiguration = authenticationConfiguration;
+        //  this.jwtUtil = jwtUtil;
     }
 
     //AuthenticationManager Bean 등록
@@ -45,7 +49,8 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-
+        LoginFilter loginFilter = new LoginFilter(authenticationManager(authenticationConfiguration));
+        loginFilter.setFilterProcessesUrl("/api/login");
 
         http
                 .csrf((auth) -> auth.disable());
@@ -59,12 +64,13 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests((auth) -> auth
                         .requestMatchers("/api/signup", "/", "/api/login" , "/api/member/new").permitAll()
+                        .requestMatchers("/api/admin").hasRole("ADMIN")
                         /* 원하는 페이지 URL 허용시키겠다.*/
                         .anyRequest().authenticated());
 
         //필터 추가 LoginFilter()는 인자를 받음 (AuthenticationManager() 메소드에 authenticationConfiguration 객체를 넣어야 함) 따라서 등록 필요
         http
-                .addFilterAt(new LoginFilter(authenticationManager(authenticationConfiguration)), UsernamePasswordAuthenticationFilter.class);
+                .addFilterAt(loginFilter, UsernamePasswordAuthenticationFilter.class);
 
         http
                 .sessionManagement((session) -> session

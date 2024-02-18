@@ -39,7 +39,7 @@ const defaultTheme = createTheme();
 
 export default function SignUp() {
   const navigate = { useNavigate};
-  const [name, setName] = useState('');
+  const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [city, setCity] = useState('');
@@ -55,7 +55,7 @@ export default function SignUp() {
     */
     API
     .post('/member/new',{
-      name : name,
+      username : username,
       email: email,
       password: password,
       city : city,
@@ -64,7 +64,7 @@ export default function SignUp() {
     })
     .then((response) => {
         console.log({
-              name : name,
+              username : username,
               email: email,
               password: password,
               city : city,
@@ -103,15 +103,15 @@ export default function SignUp() {
               <Grid item xs={12}>
                 <TextField
                   autoComplete="given-name"
-                  name="name"
+                  name="username"
                   required
                   fullWidth
-                  id="name"
-                  label="name"
+                  id="username"
+                  label="username"
                   autoFocus
                   value = {name}
                   onChange= {(e) => {
-                        setName(e.target.value);
+                        setUsername(e.target.value);
                     }
                   }
                 />

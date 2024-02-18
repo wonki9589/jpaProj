@@ -32,7 +32,7 @@ public class MemberService {
     public Long join(Member member){
         validateDuplicateMember(member);
 
-        member.setName(member.getName());
+        member.setUsername(member.getUsername());
         member.setPassword(bCryptPasswordEncoder.encode(member.getPassword()));
         member.setRole("ROLE_ADMIN");
 
@@ -41,11 +41,11 @@ public class MemberService {
     }
 
     private void validateDuplicateMember(Member member){
-        Member members = memberRepository.findByName(member.getName());
-        String memberName = members.getName();
-        if(memberName != null){
+        List<Member> members = memberRepository.validName(member.getUsername());
+        if(!members.isEmpty()){
             throw new IllegalStateException("이미 존재하는 회원입니다.");
         }
+
     }
 
     /**
@@ -60,18 +60,19 @@ public class MemberService {
     /**
     * 로그인시 JWT 토큰 검증
     * */
-
-    public UserDetails loadUserByUsername(Member member) throws UsernameNotFoundException {
-
-        //DB에서 조회
-        Member userName =  memberRepository.findByName(member.getName());
-
-        System.out.println("userName" + userName);
-        if (userName != null) {
-            //member에  담아서 return하면 AutneticationManager가 검증 
-            return new CustomUserDetails(userName);
-        }
-        return null;
-    }
+//    @Transactional(readOnly = false)
+//    public UserDetails loadUserByUsername(Member member) throws UsernameNotFoundException {
+//
+//        //DB에서 조회
+//        Member userName =  memberRepository.findByName(member.getName());
+//
+//
+//        if (userName != null) {
+//            System.out.println("service -> userName" + userName.getName());
+//            //member에  담아서 return하면 AutneticationManager가 검증
+//            return new CustomUserDetails(userName);
+//        }
+//        return null;
+//    }
 
 }
