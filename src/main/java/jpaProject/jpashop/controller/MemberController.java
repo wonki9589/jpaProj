@@ -18,12 +18,14 @@ import java.io.IOException;
 import java.net.URI;
 import java.util.Arrays;
 
-@RestController
+@Controller
 @RequiredArgsConstructor
 public class MemberController {
 
+
     private final MemberService memberService;
 
+    @ResponseBody
     @GetMapping("/api/member/new")
     public String test() {
 
@@ -52,4 +54,18 @@ public class MemberController {
         memberService.join(member);
         return "post 성공";
     }
+    @ResponseBody
+    @PostMapping("/api/login")
+    public String loginProcess(@RequestBody Member member){
+        System.out.println(member.getName());
+
+//        Member userData = memberService.findOne(member.getId());
+//        if(userData != null){
+//            ret
+//        }
+
+
+        return "join ok";
+    }
+
 }

@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,10 +17,12 @@ import java.util.List;
 public class MemberService {
 
     private final MemberRepository memberRepository;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    public MemberService(MemberRepository memberRepository) {
+    public MemberService(MemberRepository memberRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
 
         this.memberRepository = memberRepository;
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
     /**
@@ -28,6 +31,11 @@ public class MemberService {
     @Transactional(readOnly = false)
     public Long join(Member member){
         validateDuplicateMember(member);
+
+        member.setName(member.getName());
+        member.setPassword(bCryptPasswordEncoder.encode(member.getPassword()));
+        member.setRole("ROLE_ADMIN");
+
         memberRepository.save(member);
         return member.getId();
     }
@@ -52,14 +60,15 @@ public class MemberService {
     * 로그인시 JWT 토큰 검증
     * */
 
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(Member member) throws UsernameNotFoundException {
+
         //DB에서 조회
-        List<Member> userData =  memberRepository.findByName(username);
-        Member user = (Member) userData;
-        System.out.println("userData" + user);
-        if (userData != null) {
+        List<Member> userName =  memberRepository.findByName(member.getName());
+
+        System.out.println("userName" + userName);
+        if (userName != null) {
             //member에  담아서 return하면 AutneticationManager가 검증 
-            return new CustomUserDetails(user);
+            return new CustomUserDetails((Member) userName);
         }
         return null;
     }
