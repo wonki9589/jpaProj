@@ -26,12 +26,12 @@ public class SecurityConfig {
     //AuthenticationManager가 인자로 받을 AuthenticationConfiguraion 객체 생성자 주입
     private final AuthenticationConfiguration authenticationConfiguration;
     //JWTUtil 주입
-    //private final JWTUtil jwtUtil;
+    private final JWTUtil jwtUtil;
 
-    public SecurityConfig(AuthenticationConfiguration authenticationConfiguration) {
+    public SecurityConfig(AuthenticationConfiguration authenticationConfiguration , JWTUtil jwtUtil) {
 
         this.authenticationConfiguration = authenticationConfiguration;
-        //  this.jwtUtil = jwtUtil;
+          this.jwtUtil = jwtUtil;
     }
 
     //AuthenticationManager Bean 등록
@@ -49,7 +49,7 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        LoginFilter loginFilter = new LoginFilter(authenticationManager(authenticationConfiguration));
+        LoginFilter loginFilter = new LoginFilter(authenticationManager(authenticationConfiguration),jwtUtil);
         loginFilter.setFilterProcessesUrl("/api/login");
 
         http
