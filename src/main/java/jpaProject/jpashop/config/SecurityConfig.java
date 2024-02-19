@@ -1,6 +1,7 @@
 package jpaProject.jpashop.config;
 
 import jakarta.servlet.http.HttpServletRequest;
+import jpaProject.jpashop.jwt.JWTFilter;
 import jpaProject.jpashop.jwt.JWTUtil;
 import jpaProject.jpashop.jwt.LoginFilter;
 import org.springframework.context.annotation.Bean;
@@ -67,6 +68,9 @@ public class SecurityConfig {
                         .requestMatchers("/api/admin").hasRole("ADMIN")
                         /* 원하는 페이지 URL 허용시키겠다.*/
                         .anyRequest().authenticated());
+        //JWTFilter 등록
+        http
+                .addFilterBefore(new JWTFilter(jwtUtil), LoginFilter.class);
 
         //필터 추가 LoginFilter()는 인자를 받음 (AuthenticationManager() 메소드에 authenticationConfiguration 객체를 넣어야 함) 따라서 등록 필요
         http
