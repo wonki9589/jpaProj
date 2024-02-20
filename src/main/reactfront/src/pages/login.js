@@ -1,3 +1,8 @@
+import React, { useState } from 'react';
+import API from '../api.js';
+import DataTest from './login.js';
+import { useNavigate } from 'react-router-dom';
+
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
@@ -9,11 +14,39 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Link from '@mui/material/Link';
-import API from '../api.js';
-import DataTest from './login.js';
 
 
-const login = () => {
+
+
+export default function Login() {
+   const [username, setUsername] = useState('');
+   const [password, setPassword] = useState('');
+//    const dispatch = useDispatch();
+
+    const handleSubmit = (event) => {
+     event.preventDefault();
+
+     API
+         .post('/login',{
+           username : username,
+           password: password,
+
+         })
+         .then((response) => {
+             console.log({
+                   username : username,
+                    password: password,
+             });
+             console.log(' success!!!',response.data );
+     //        push('/')
+             }
+         )
+         .catch((error) => {
+             console.log('error !!!',error.response);
+         })
+
+    };
+
     return (
        <Container component="main" maxWidth="xs">
            <Box
@@ -32,12 +65,16 @@ const login = () => {
           </Typography>
           <TextField
            margin ="normal"
-           label="Email Address"
+           label="name"
            required
            fullWidth
-           name="email"
-           autoComplete="email"
+           name="username"
+           autoComplete="username"
            autoFocus
+           onChange= {(e) => {
+                   setUsername(e.target.value);
+                }
+           }
            />
           <TextField
            label="Password"
@@ -46,15 +83,19 @@ const login = () => {
            fullWidth 
            name="password"
            autoComplete="current-password"
+           onChange= {(e) => {
+               setPassword(e.target.value);
+                }
+           }
            />
            <FormControlLabel
             control={<Checkbox value="remember"
             color="primary" />}
             label="Remember me"
            />
-           <Button type="submit" fullWidth variant="contained"
+           <Button type="submit" onClick ={handleSubmit} fullWidth variant="contained"
            sx={{ mt:3, mb:2}}>
-              Sign in
+              Sign in !
             </Button>
            <Grid container>
             <Grid item xs>
@@ -67,7 +108,7 @@ const login = () => {
         </Box>
       </Container>
     );
-  }
-  
-  export default login;
+
+ }
+
   

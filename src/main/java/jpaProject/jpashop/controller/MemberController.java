@@ -57,15 +57,17 @@ public class MemberController {
         memberService.join(member);
         return "회원가입 ok";
     }
-//    @ResponseBody
-//    @PostMapping("/api/login")
-//    public String loginProcess(@RequestBody Member member){
-//
-//
-//        CustomUserDetailsService.loadUserByUsername(member.getName());
-//
-//
-//        return "로그인 ok";
-//    }
+    @ResponseBody
+    @PostMapping("/api/login")
+    public String loginProcess(@RequestBody MemberForm memberForm){
+
+        Member member = new Member();
+        member.setUsername(memberForm.getUsername());
+        member.setPassword(memberForm.getPassword());
+
+//        memberService.
+
+        return "로그인 ok";
+    }
 
 }

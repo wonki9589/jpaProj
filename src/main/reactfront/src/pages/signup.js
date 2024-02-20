@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import API from '../api.js'
 import { useNavigate } from 'react-router-dom';
+
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -14,6 +15,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+//import { history } from  'react-router-dom';
 
 
 
@@ -39,6 +41,7 @@ const defaultTheme = createTheme();
 
 export default function SignUp() {
   const navigate = { useNavigate};
+//  const { push , replace }  = useHistory('');
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -72,6 +75,7 @@ export default function SignUp() {
               zipcode : zipcode
         });
         console.log(' success!!!',response.data );
+//        push('/')
     }
     )
     .catch((error) => {
@@ -109,7 +113,7 @@ export default function SignUp() {
                   id="username"
                   label="username"
                   autoFocus
-                  value = {name}
+                  value = {username}
                   onChange= {(e) => {
                         setUsername(e.target.value);
                     }

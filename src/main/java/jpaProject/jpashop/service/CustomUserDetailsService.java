@@ -25,9 +25,9 @@ public class CustomUserDetailsService implements UserDetailsService {
 
         //DB에서 조회
         Member userData = userRepository.findByUsername(username);
-        System.out.println("member ? " + userData.getRole());
-        System.out.println("member ? " + userData.getUsername());
-        System.out.println("member ? " + userData.getPassword());
+        System.out.println("member Role ? " + userData.getRole());
+        System.out.println("member name ? " + userData.getUsername());
+        System.out.println("member password ? " + userData.getPassword());
         if (userData != null) {
 
             //UserDetails에 담아서 return하면 AutneticationManager가 검증 함

@@ -1,9 +1,13 @@
 package jpaProject.jpashop.jwt;
 
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.FilterChain;
+import jakarta.servlet.ServletInputStream;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jpaProject.jpashop.domain.Member;
 import jpaProject.jpashop.service.CustomUserDetails;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -11,7 +15,10 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.util.StreamUtils;
 
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.Collection;
 import java.util.Iterator;
 public class LoginFilter extends UsernamePasswordAuthenticationFilter {
@@ -29,10 +36,24 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
 
+
         //클라이언트 요청에서 username, password 추출
         // obtainUsername(request) -> only formdata 형식 (parameter  json 은 못받아옴 )
-        String username = obtainUsername(request);
-        String password = obtainPassword(request);
+//        String username = obtainUsername(request);
+//        String password = obtainPassword(request);
+
+        // form data -> json
+        Member member = new Member();
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            ServletInputStream inputStream = request.getInputStream();
+            String messageBody = StreamUtils.copyToString(inputStream, StandardCharsets.UTF_8);
+            member = objectMapper.readValue(messageBody, Member.class);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        String username = member.getUsername();
+        String password = member.getPassword();
 
         //스프링 시큐리티에서 username과 password를 검증하기 위해서는 token에 담아야 함
         UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(username, password, null);
