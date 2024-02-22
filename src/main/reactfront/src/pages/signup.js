@@ -66,16 +66,8 @@ export default function SignUp() {
       zipcode : zipcode
     })
     .then((response) => {
-        console.log({
-              username : username,
-              email: email,
-              password: password,
-              city : city,
-              street : street,
-              zipcode : zipcode
-        });
         console.log(' success!!!',response.data );
-//        push('/')
+        document.location.href = "/api/login";
     }
     )
     .catch((error) => {

@@ -1,6 +1,6 @@
 import React from 'react'
 
-const footer = () => {
+const MainFooter = () => {
     return (
         <div>
             {/* Footer Start */}
@@ -72,4 +72,4 @@ const footer = () => {
     )
 }
 
-export default footer
+export default MainFooter

@@ -33,12 +33,12 @@ export default function Login() {
 
          })
          .then((response) => {
-             console.log({
-                   username : username,
-                    password: password,
-             });
-             console.log(' success!!!',response.data );
-     //        push('/')
+            if (response.status === 200) {
+                       sessionStorage.setItem('login-token', response.headers.authorization);
+                       sessionStorage.setItem('username', username);
+                       console.log(response);
+                }
+             document.location.href = "/";
              }
          )
          .catch((error) => {

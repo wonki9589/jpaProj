@@ -1,8 +1,28 @@
-import React from 'react'
-// import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import Link from '@mui/material/Link';
 
 
-const header = () => {
+
+export default function Header() {
+    const [isLogin, setIsLogin] = useState(false); //로그인 관리
+    const deleteSession = () => {
+         sessionStorage.removeItem("login-token");
+          sessionStorage.removeItem("username");
+     };
+
+     useEffect(() => {
+        if (sessionStorage.getItem("login-token") === null) {
+          // sessionStorage 에 name 라는 key 값으로 저장된 값이 없다면
+          console.log("isLogin ??", isLogin);
+
+        } else {
+          // sessionStorage 에 name 라는 key 값으로 저장된 값이 있다면
+          // 로그인 상태 변경
+          setIsLogin(true);
+          console.log("isLogin ?? :: ", isLogin);
+        }
+      });
+
     return (
         <div>
             {/* Navbar & Hero Start */}
@@ -33,7 +53,15 @@ const header = () => {
                     <a href="contact.html" className="nav-item nav-link">Contact</a>
                     </div>
 
-                    <a href="/api/login" className="btn btn-light rounded-pill text-primary py-2 px-4 ms-lg-5">login</a>
+                    {isLogin ? (
+                            <Link href="/" onClick ={deleteSession} className="btn btn-light rounded-pill text-primary py-2 px-4 ms-lg-5">
+                              Logout
+                            </Link>
+                        ) : (
+                            <Link href="/api/login" className="btn btn-light rounded-pill text-primary py-2 px-4 ms-lg-5">
+                              Login
+                            </Link>
+                    )}
 
                 </div>
                 </nav>
@@ -61,4 +89,3 @@ const header = () => {
     )
 }
 
-export default header

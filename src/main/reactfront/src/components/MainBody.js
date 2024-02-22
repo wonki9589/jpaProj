@@ -1,6 +1,6 @@
 import React from 'react'
 
-const body = () => {
+const MainBody = () => {
     return (
         <div>
         {/* About Start */}
@@ -377,4 +377,4 @@ const body = () => {
     )
 } 
 
-export default body
+export default MainBody
