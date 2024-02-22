@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import API from '../api.js';
 import DataTest from './login.js';
-import { useNavigate } from 'react-router-dom';
-
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';

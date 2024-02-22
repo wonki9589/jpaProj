@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import API from '../api.js'
-import { useNavigate } from 'react-router-dom';
 
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -40,8 +39,6 @@ const defaultTheme = createTheme();
 
 
 export default function SignUp() {
-  const navigate = { useNavigate};
-//  const { push , replace }  = useHistory('');
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
