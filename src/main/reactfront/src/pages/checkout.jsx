@@ -32,7 +32,7 @@ const LoginStep = () => {
   const authDispatch = useContext(AuthDispatchContext);
   const checkoutDispatch = useContext(CheckoutDispatchContext);
   const handleContinueShopping = () => {
-        window.location.replace("/");
+        window.location.replace("/shop");
   };
   const handleLoginAsDiffUser = () => {
     signOut(authDispatch);

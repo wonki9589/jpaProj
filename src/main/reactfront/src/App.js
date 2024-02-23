@@ -2,6 +2,7 @@ import './App.css';
 import SignUp from './pages/signup';
 import Login from './pages/login'; 
 import Home from './pages/Main';
+import HomeLayout from './layouts/MainLayout';
 import About from './pages/about';
 import DataTest from './pages/dataTest'
 //import { BrowserRouter, Routes, Route } from 'react-router-dom';
@@ -40,6 +41,9 @@ function App() {
                 <CheckoutProvider>
                   <Router>
                     <Switch>
+                      <Route exact path='/' component={Home} />
+                      <Route path='/api/login' component={Login} />
+                      <Route path='/api/signup' component={SignUp} />
                       <RouteWrapper
                         path="/shop"
                         exact
