@@ -17,7 +17,12 @@ import java.util.Map;
 @Getter @Setter
 public class ProductDTO {
 
-    private Integer idx;
+    private Integer id;
     private List<Object> info;
 
+    private String name ;
+    private String price ;
+
+    private String image ;
+    private String category ;
 }

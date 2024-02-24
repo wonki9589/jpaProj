@@ -11,7 +11,7 @@ import java.util.Map;
 @Getter
 @Builder
 @NoArgsConstructor
-@AllArgsConstructor(access =AccessLevel.PRIVATE)
+@AllArgsConstructor
 @Entity(name = "PRODUCT")
 public class Product {
     @Id
@@ -20,7 +20,30 @@ public class Product {
     private Integer idx;
 
     @Type(JsonType.class)
-    @Column(name ="INFO", columnDefinition = "longtext")
-    private List<Object> info;
+    @Column(name ="ID" ,columnDefinition = "longtext")
+    private String id ;
+
+    @Type(JsonType.class)
+    @Column(name ="NAME", columnDefinition = "longtext")
+    private String name ;
+
+    @Type(JsonType.class)
+    @Column(name ="PRICE", columnDefinition = "longtext")
+    private String price ;
+
+    @Type(JsonType.class)
+    @Column(name ="IMAGE", columnDefinition = "longtext")
+    private String image ;
+
+    @Type(JsonType.class)
+    @Column(name ="CATEGORY", columnDefinition = "longtext")
+    private String category ;
+
+    /**
+     * 리스트 칼럼 하나로 다 받아올때
+     */
+//    @Type(JsonType.class)
+//    @Column(name ="INFO", columnDefinition = "longtext")
+//    private List<Object> info;
 
 }
