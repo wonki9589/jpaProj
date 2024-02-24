@@ -10,6 +10,9 @@ const ProductCard = ({ data }) => {
     const product = { ...data, quantity: 1 };
     addToCart(dispatch, product);
     setIsAdded(true);
+    /*
+    add to cart 버튼 누르면 카트에 담기는 부분
+    */
     setTimeout(() => {
       setIsAdded(false);
     }, 3500);

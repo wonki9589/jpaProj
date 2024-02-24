@@ -86,7 +86,7 @@ public class SecurityConfig {
 
         http
                 .authorizeHttpRequests((auth) -> auth
-                        .requestMatchers("/api/signup", "/", "/api/login" , "/api/member/new").permitAll()
+                        .requestMatchers("/api/signup", "/", "/api/login" , "/api/member/new", "api/product").permitAll()
                         .requestMatchers("/api/admin").hasRole("ADMIN")
                         /* 원하는 페이지 URL 허용시키겠다.*/
                         .anyRequest().authenticated());

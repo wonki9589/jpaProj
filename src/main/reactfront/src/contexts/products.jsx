@@ -47,7 +47,9 @@ const ProductsProvider = ({ children }) => {
     </ProductsDispatchContext.Provider>
   );
 };
-
+/*
+json 으로 상품 가져오는 곳
+*/
 export const getProducts = (dispatch) => {
   dispatch({
     type: "GET_PRODUCTS_REQUEST"
@@ -57,6 +59,8 @@ export const getProducts = (dispatch) => {
   axios
     .get(url)
     .then((response) => {
+     //console.log("response" + response.data);
+      console.log("response" + JSON.stringify(response.data));
       dispatch({
         type: "GET_PRODUCTS_SUCCESS",
         payload: {
