@@ -11,17 +11,13 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.Type;
 
+import java.util.List;
 import java.util.Map;
 
 @Getter @Setter
 public class ProductDTO {
+
     private Integer idx;
+    private List<Object> info;
 
-    private Map<String, Object> name;
-
-//    @Builder
-//    public ProductDTO(Integer idx, Map<String ,Object> name){
-//        this.idx = idx;
-//        this.name = name;
-//    }
 }

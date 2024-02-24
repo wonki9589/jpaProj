@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.Type;
 
+import java.util.List;
 import java.util.Map;
 
 @Getter
@@ -19,7 +20,7 @@ public class Product {
     private Integer idx;
 
     @Type(JsonType.class)
-    @Column(name ="NAME", columnDefinition = "longtext")
-    private Map<String, Object> name;
+    @Column(name ="INFO", columnDefinition = "longtext")
+    private List<Object> info;
 
 }
