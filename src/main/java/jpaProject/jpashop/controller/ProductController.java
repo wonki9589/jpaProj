@@ -10,9 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.apache.tomcat.util.json.JSONParser;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -51,4 +49,13 @@ public class ProductController {
         }
         return ResponseEntity.ok().build();
     }
+
+    @GetMapping("/api/product")
+    public ResponseEntity getProduct(@RequestParam(name = "idx") Integer idx) {
+        Product product = productRepository.findById(idx)
+                .orElseThrow(() -> new RuntimeException("Not Found"));
+        System.out.println("prodect ? "+ product);
+        return ResponseEntity.ok(product);
+    }
+
 }

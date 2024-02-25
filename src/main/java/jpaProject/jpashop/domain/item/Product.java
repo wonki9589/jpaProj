@@ -20,8 +20,8 @@ public class Product {
     private Integer idx;
 
     @Type(JsonType.class)
-    @Column(name ="ID" ,columnDefinition = "longtext")
-    private String id ;
+    @Column(name ="ID" ,columnDefinition = "int(11)")
+    private Integer id ;
 
     @Type(JsonType.class)
     @Column(name ="NAME", columnDefinition = "longtext")
