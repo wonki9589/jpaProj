@@ -63,12 +63,20 @@ export default function SignUp() {
       zipcode : zipcode
     })
     .then((response) => {
-        console.log(' success!!!',response.data );
-        document.location.href = "/api/login";
+        console.log(response.data);
+         if(response.status === 200){
+            alert("회원가입에 성공하셨습니다.")
+         }
+         document.location.href = "/api/login";
     }
     )
     .catch((error) => {
-        console.log('error !!!',error.response);
+    // 400 코드면 여기로옴
+       if(error.response.status === 400){
+              /* 서버에서 날라오는 유효성검사 message*/
+             alert(error.response.data.errors[0].defaultMessage);
+       }
+
     })
 
   };

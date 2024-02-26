@@ -37,20 +37,20 @@ export default function Header() {
                 </button>
                 <div className="collapse navbar-collapse" id="navbarCollapse">
                     <div className="navbar-nav ms-auto py-0">
-                    <a href="index.html" className="nav-item nav-link active">Home</a>
-                    <a href="about.html" className="nav-item nav-link">About</a>
-                    <a href="service.html" className="nav-item nav-link">Service</a>
+                    <Link href="/" className="nav-item nav-link" style={{textDecoration: 'none'}}> Home</Link>
+                    <Link href="/shop" className="nav-item nav-link" style={{textDecoration: 'none'}} >Shop</Link>
+
                     <div className="nav-item dropdown">
                         <a href="#" className="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                         <div className="dropdown-menu m-0">
-                        <a href="feature.html" className="dropdown-item">Features</a>
+                         <Link href="/checkout" className="nav-item nav-link" style={{textDecoration: 'none' ,padding : '5px' , color : 'black'}}>Shipping Address</Link>
                         <a href="quote.html" className="dropdown-item">Free Quote</a>
                         <a href="team.html" className="dropdown-item">Our Team</a>
                         <a href="testimonial.html" className="dropdown-item">Testimonial</a>
                         <a href="404.html" className="dropdown-item">404 Page</a>
                         </div>
                     </div>
-                    <a href="contact.html" className="nav-item nav-link">Contact</a>
+
                     </div>
 
                     {isLogin ? (
