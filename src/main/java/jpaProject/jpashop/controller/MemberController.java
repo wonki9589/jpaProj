@@ -40,22 +40,18 @@ public class MemberController {
 
     @ResponseBody
     @PostMapping("/api/member/new")
-    public String create(@RequestBody MemberForm memberForm){
-
-//        if (bindingResult.hasErrors()) {
-//            return "redirect:/";
-//        }`
+    public ResponseEntity create(@RequestBody @Valid MemberForm memberForm){
 
         Address address = new Address(memberForm.getCity(),memberForm.getStreet(),memberForm.getZipcode());
 
         Member member = new Member();
         member.setUsername(memberForm.getUsername());
         member.setPassword(memberForm.getPassword());
-
+        member.setEmail(memberForm.getEmail());
         member.setAddress(address);
 
         memberService.join(member);
-        return "회원가입 ok";
+        return ResponseEntity.ok(200);
     }
     @ResponseBody
     @PostMapping("/api/login")

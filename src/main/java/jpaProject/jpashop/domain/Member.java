@@ -1,6 +1,9 @@
 package jpaProject.jpashop.domain;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,6 +20,8 @@ public class Member {
     private String username;
 
     private String password;
+
+    private String email;
 
     @Embedded
     private Address address;

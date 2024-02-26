@@ -78,18 +78,19 @@ public class SecurityConfig {
         http
                 .csrf((auth) -> auth.disable());
 
-        http
-                .formLogin((auth) -> auth.disable());
-
-        http
-                .httpBasic((auth) -> auth.disable());
+//        http
+//                .formLogin((auth) -> auth.disable());
+//
+//        http
+//                .httpBasic((auth) -> auth.disable());
 
         http
                 .authorizeHttpRequests((auth) -> auth
                         .requestMatchers("/api/signup", "/", "/api/login" , "/api/member/new", "api/product").permitAll()
                         .requestMatchers("/api/admin").hasRole("ADMIN")
                         /* 원하는 페이지 URL 허용시키겠다.*/
-                        .anyRequest().authenticated());
+                        .anyRequest().permitAll());
+                        /* anyRequest().authenticated() 403 error 뜸  */
         //JWTFilter 등록
         http
                 .addFilterBefore(new JWTFilter(jwtUtil), LoginFilter.class);
