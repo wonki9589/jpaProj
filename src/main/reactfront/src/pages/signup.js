@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import API from '../api.js'
 
 import Avatar from '@mui/material/Avatar';
@@ -45,14 +45,13 @@ export default function SignUp() {
   const [city, setCity] = useState('');
   const [street, setStreet] = useState('');
   const [zipcode, setZipcode] = useState('');
+  const [duplicate, setDuplicate] = useState(true);
+
+
 
   const handleSubmit = (event) => {
     event.preventDefault();
-//    const data = new FormData(event.currentTarget);
-    /*
-        인풋 데이터 콘솔로 찍는 곳
-        서버로 보내야 할 데이터들
-    */
+
     API
     .post('/member/new',{
       username : username,
@@ -76,10 +75,40 @@ export default function SignUp() {
               /* 서버에서 날라오는 유효성검사 message*/
              alert(error.response.data.errors[0].defaultMessage);
        }
-
     })
-
   };
+
+      const dupliUsername = (event) => {
+        // 클릭시 아이디 중복검사
+        event.preventDefault();
+        if(username===""){
+            alert("이름을 입력해주세요");
+            return false;
+        }
+        API
+           .get('/member/new/exist',{
+             params:{
+                username : username
+             }
+           })
+           .then((response) => {
+                console.log("response : " +response.data);
+                if(response.data === false){
+                    alert("이미 가입된 이름이 있습니다.");
+                    setDuplicate(false);
+                    // 인풋버튼 옆에 글씨나오게끔하고 버튼을 readonly 로 바꾸는 작업
+                }
+                else{
+                  alert("가입 가능한 이름입니다.");
+                 setDuplicate(true);
+                }
+            })
+            .catch((error) => {
+            // 400 코드면 여기로옴
+                console.log("error" +error.data);
+            })
+      };
+
 
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -101,6 +130,7 @@ export default function SignUp() {
           </Typography>
           <Box component="form"  onSubmit={handleSubmit} sx={{ mt: 3 }}>
             <Grid container spacing={2}>
+
               <Grid item xs={12}>
                 <TextField
                   autoComplete="given-name"
@@ -116,6 +146,9 @@ export default function SignUp() {
                     }
                   }
                 />
+              </Grid>
+              <Grid item xs={12} >
+                 <button onClick={dupliUsername} >duplicate</button>
               </Grid>
               <Grid item xs={12}>
                 <TextField

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import API from '../api.js';
 import DataTest from './login.js';
 import TextField from '@mui/material/TextField';
@@ -19,9 +19,11 @@ import Link from '@mui/material/Link';
 export default function Login() {
    const [username, setUsername] = useState('');
    const [password, setPassword] = useState('');
-//    const dispatch = useDispatch();
 
-    const handleSubmit = (event) => {
+   const [storageName, setStorageName] = useState('');
+   const [remember, setRemember] = useState(false);
+
+   const handleSubmit = (event) => {
      event.preventDefault();
 
      API
@@ -62,8 +64,8 @@ export default function Login() {
             Sign in
           </Typography>
           <TextField
+           label="username"
            margin ="normal"
-           label="name"
            required
            fullWidth
            name="username"
@@ -75,7 +77,7 @@ export default function Login() {
            }
            />
           <TextField
-           label="Password"
+           label="password"
            type="password"
            required
            fullWidth 
@@ -86,19 +88,15 @@ export default function Login() {
                 }
            }
            />
-           <FormControlLabel
-            control={<Checkbox value="remember"
-            color="primary" />}
-            label="Remember me"
-           />
+
            <Button type="submit" onClick ={handleSubmit} fullWidth variant="contained"
            sx={{ mt:3, mb:2}}>
-              Sign in !
+              Sign in
             </Button>
            <Grid container>
-            <Grid item xs>
-               <Link href="/api/member/new">Forgot password?</Link>
-            </Grid>
+                <Grid item xs>
+                   <Link href="/api/member/new">Forgot password?</Link>
+                </Grid>
             <Grid item>
                  <Link href="/api/signup" variant="body2"> Sign up</Link>
             </Grid>
