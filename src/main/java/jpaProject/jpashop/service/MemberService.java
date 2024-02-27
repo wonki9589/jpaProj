@@ -2,8 +2,10 @@ package jpaProject.jpashop.service;
 
 import jpaProject.jpashop.domain.Member;
 import jpaProject.jpashop.repository.MemberRepository;
+import jpaProject.jpashop.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -45,7 +47,17 @@ public class MemberService {
         if(!members.isEmpty()){
             throw new IllegalStateException("이미 존재하는 회원입니다.");
         }
+    }
 
+    /**
+     * 회원가입 유효성 검사
+     */
+    public boolean existByUsername(String username){
+        List<Member> members = memberRepository.validName(username);
+        if(!members.isEmpty()){
+            return false;
+        }
+        return true;
     }
 
     /**
@@ -56,23 +68,5 @@ public class MemberService {
     public Member findOne(Long memberId){
         return memberRepository.findOne(memberId);
     }
-
-    /**
-    * 로그인시 JWT 토큰 검증
-    * */
-//    @Transactional(readOnly = false)
-//    public UserDetails loadUserByUsername(Member member) throws UsernameNotFoundException {
-//
-//        //DB에서 조회
-//        Member userName =  memberRepository.findByName(member.getName());
-//
-//
-//        if (userName != null) {
-//            System.out.println("service -> userName" + userName.getName());
-//            //member에  담아서 return하면 AutneticationManager가 검증
-//            return new CustomUserDetails(userName);
-//        }
-//        return null;
-//    }
 
 }

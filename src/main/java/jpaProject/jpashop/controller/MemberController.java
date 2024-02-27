@@ -29,13 +29,11 @@ public class MemberController {
     private final MemberService memberService;
 
     @ResponseBody
-    @GetMapping("/api/member/new")
-    public String test() {
+    @GetMapping("/api/member/new/exist")
+    public ResponseEntity<Boolean> checkUsernameDuplicate(@RequestParam(name = "username") String username) {
+        memberService.existByUsername(username);
 
-        System.out.println("emfdjdhkTdk ?");
-        return "zz";
-
-
+        return ResponseEntity.ok( memberService.existByUsername(username) );
     }
 
     @ResponseBody
