@@ -19,6 +19,8 @@ public class MemberForm {
      *     private String street;
      *     private String zipcode;
      */
+
+    private Long id;
     @NotEmpty(message = "회원 이름은 필수 입니다.")
     @Pattern(message = "잘못된 아이디 형식입니다."
             , regexp = "^(?=.*[a-z0-9])[a-z0-9]{3,16}$")

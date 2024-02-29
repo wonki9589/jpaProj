@@ -2,8 +2,9 @@ package jpaProject.jpashop.controller;
 
 
 import lombok.Getter;
+import lombok.Setter;
 
-@Getter
+@Getter @Setter
 public class EmailPostDto {
 
     /*
@@ -17,4 +18,5 @@ public class EmailPostDto {
 
     private String username;
     private String email;
+    private String password;
 }

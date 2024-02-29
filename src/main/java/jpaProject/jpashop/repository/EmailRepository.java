@@ -5,6 +5,7 @@ import jpaProject.jpashop.domain.Member;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -21,4 +22,19 @@ public class EmailRepository {
                 .setParameter("email", email)
                 .getResultList();
     }
+    // 해당 회원 이름으로 조회
+
+    public Member findByUserName(String username){
+        return (Member) em.createQuery("select m from Member m where m.username = :username",Member.class)
+                .setParameter("username", username)
+                .getResultList();
+    }
+    // 변경감지
+    @Transactional
+    public void updateMember(String pw ,Member member){
+        Member findMember = em.find(Member.class, member.getId());
+
+        findMember.setPassword(pw);
+    }
+
 }

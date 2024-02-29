@@ -15,6 +15,8 @@ public class EmailMessage {
      *   message : 내용
      **/
     private String username;
+    private String email;
+    private String password;
 
     private String to;
     private String subject;
