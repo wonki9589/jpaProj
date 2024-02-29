@@ -12,35 +12,39 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Link from '@mui/material/Link';
+import { Hidden } from '@mui/material';
 
 
 
 
-export default function Login() {
+export default function FindPw() {
    const [username, setUsername] = useState('');
-   const [password, setPassword] = useState('');
+   const [email, setEmail] = useState('');
 
-   const [storageName, setStorageName] = useState('');
-   const [remember, setRemember] = useState(false);
 
    const handleSubmit = (event) => {
      event.preventDefault();
-
+     if(username == ''){
+        alert("이름을 입력해주세요.");
+        return false;
+     }
+     if(email ==''){
+        alert("이메일을 입력해주세요.");
+        return false;
+     }
      API
-         .post('/login',{
+         .post('/member/send',{
            username : username,
-           password: password,
-
+           email: email,
          })
          .then((response) => {
-            if (response.status === 200) {
-                       sessionStorage.setItem('login-token', response.headers.authorization);
-                       sessionStorage.setItem('username', username);
-                       console.log(response);
-                }
-             document.location.href = "/";
-             }
-         )
+            console.log(response);
+            if (response.data == true) {
+                alert("해당 이메일로 임시 비밀번호를 발송하였으니 임시비밀번호로 로그인해주세요.");
+                //  유저에게 임시비밀번호 입력하라고 해야함
+                //  인풋창 하나 보이게 해야함
+            }
+         })
          .catch((error) => {
              console.log('error !!!',error.response);
          })
@@ -61,7 +65,7 @@ export default function Login() {
            <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign in
+            Find Password
           </Typography>
           <TextField
            label="username"
@@ -77,29 +81,26 @@ export default function Login() {
            }
            />
           <TextField
-           label="password"
-           type="password"
+           label="email"
+           type="email"
            required
            fullWidth 
-           name="password"
+           name="email"
            autoComplete="current-password"
            onChange= {(e) => {
-               setPassword(e.target.value);
+               setEmail(e.target.value);
                 }
            }
            />
 
            <Button type="submit" onClick ={handleSubmit} fullWidth variant="contained"
            sx={{ mt:3, mb:2}}>
-              Sign in
+              Send email
             </Button>
            <Grid container>
-                <Grid item xs>
-                   <Link href="/api/findPw">Forgot password?</Link>
-                </Grid>
-            <Grid item>
-                 <Link href="/api/signup" variant="body2"> Sign up</Link>
-            </Grid>
+             <Grid item >
+                <Link href="/api/login"> login </Link>
+             </Grid>
            </Grid>
         </Box>
       </Container>

@@ -3,8 +3,8 @@ import SignUp from './pages/signup';
 import Login from './pages/login'; 
 import Home from './pages/Main';
 import About from './pages/about';
-import DataTest from './pages/dataTest'
-//import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import FindPw from './pages/findPw'
+
 
 import { BrowserRouter as Router, Route,Routes, Switch } from "react-router-dom";
 import AuthProvider from "./contexts/auth";
@@ -43,6 +43,7 @@ function App() {
                       <Route exact path='/' component={Home} />
                       <Route path='/api/login' component={Login} />
                       <Route path='/api/signup' component={SignUp} />
+                      <Route path='/api/findPw' component={FindPw} />
                       <RouteWrapper
                         path="/shop"
                         exact
