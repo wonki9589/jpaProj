@@ -21,12 +21,16 @@ public class EmailController {
     @PostMapping("/api/member/send")
     public ResponseEntity pwFind(@RequestBody EmailPostDto emailPostDto) throws Exception {
 
+        // 유저,이메일 검사
+        boolean valid = emailService.validNameEmail(emailPostDto.getUsername(),emailPostDto.getEmail());
 
-        emailService.validNameEmail(emailPostDto.getUsername(),emailPostDto.getEmail());
-        // 메일보내기
+        if(valid == false){
+            new RuntimeException("Not Found");
+        }
+
         emailService.mailInfo(emailPostDto);
 
-        return ResponseEntity.ok( emailService.mailInfo(emailPostDto));
+        return ResponseEntity.ok(emailService.mailInfo(emailPostDto));
     }
 
 

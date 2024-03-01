@@ -98,13 +98,13 @@ public class EmailService {
 
 
     // 회원 이름과 이메일 존재하는지 메소드
-    public List<Member> validNameEmail(String username , String email){
+    public Boolean validNameEmail(String username , String email) throws Exception{
         List<Member> members = emailRepository.validNameEmail(username,email);
 
-            if(members.isEmpty()){
-                throw new IllegalStateException("입력한 정보의 데이터가 없습니다");
-            }
-        return members;
+        if(members.isEmpty()){
+           throw  new IllegalStateException("입력한 정보의 데이터가 없습니다");
+        }
+        return true;
     }
 
 

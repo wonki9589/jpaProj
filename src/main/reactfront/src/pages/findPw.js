@@ -1,6 +1,8 @@
 import React, { useState,useEffect } from 'react';
 import API from '../api.js';
 import DataTest from './login.js';
+import Loading from '../components/Loading';
+
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
@@ -12,7 +14,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Link from '@mui/material/Link';
-import { Hidden } from '@mui/material';
+
 
 
 
@@ -20,6 +22,8 @@ import { Hidden } from '@mui/material';
 export default function FindPw() {
    const [username, setUsername] = useState('');
    const [email, setEmail] = useState('');
+   const [loading, setLoading] = useState(false);
+
 
 
    const handleSubmit = (event) => {
@@ -32,23 +36,29 @@ export default function FindPw() {
         alert("이메일을 입력해주세요.");
         return false;
      }
+     setLoading(true);
      API
          .post('/member/send',{
            username : username,
            email: email,
          })
          .then((response) => {
+            setLoading(false); // api 호출 완료 됐을 때 false로 변경하려 로딩화면 숨김처리
+
             console.log(response);
             if (response.data == true) {
                 alert("해당 이메일로 임시 비밀번호를 발송하였으니 임시비밀번호로 로그인해주세요.");
-                //  유저에게 임시비밀번호 입력하라고 해야함
-                //  인풋창 하나 보이게 해야함
+                setLoading(false); // api 호출 완료 됐을 때 false로 변경하려 로딩화면 숨김처리
+                //document.location.href = "/api/login";
             }
          })
          .catch((error) => {
              console.log('error !!!',error.response);
+             if(error.response.status == 500){
+                alert("일치하는 회원정보가 없습니다.");
+                setLoading(false); // api 호출 완료 됐을 때 false로 변경하려 로딩화면 숨김처리
+             }
          })
-
     };
 
     return (
@@ -92,6 +102,8 @@ export default function FindPw() {
                 }
            }
            />
+
+           {loading ? <Loading /> : null}
 
            <Button type="submit" onClick ={handleSubmit} fullWidth variant="contained"
            sx={{ mt:3, mb:2}}>
