@@ -66,7 +66,7 @@ export default function SignUp() {
          if(response.status === 200){
             alert("회원가입에 성공하셨습니다.")
          }
-         document.location.href = "/api/login";
+         document.location.href = "/login";
     }
     )
     .catch((error) => {
@@ -246,7 +246,7 @@ export default function SignUp() {
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link href="/api/login" variant="body2">
+                <Link href="/login" variant="body2">
                   Already have an account? Sign in
                 </Link>
               </Grid>

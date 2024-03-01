@@ -49,7 +49,7 @@ export default function FindPw() {
             if (response.data == true) {
                 alert("해당 이메일로 임시 비밀번호를 발송하였으니 임시비밀번호로 로그인해주세요.");
                 setLoading(false); // api 호출 완료 됐을 때 false로 변경하려 로딩화면 숨김처리
-                //document.location.href = "/api/login";
+                //document.location.href = "/login";
             }
          })
          .catch((error) => {
@@ -111,7 +111,7 @@ export default function FindPw() {
             </Button>
            <Grid container>
              <Grid item >
-                <Link href="/api/login"> login </Link>
+                <Link href="/login"> login </Link>
              </Grid>
            </Grid>
         </Box>

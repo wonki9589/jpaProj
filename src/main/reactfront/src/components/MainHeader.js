@@ -58,7 +58,7 @@ export default function Header() {
                               Logout
                             </Link>
                         ) : (
-                            <Link href="/api/login" className="btn btn-light rounded-pill text-primary py-2 px-4 ms-lg-5">
+                            <Link href="/login" className="btn btn-light rounded-pill text-primary py-2 px-4 ms-lg-5">
                               Login
                             </Link>
                     )}

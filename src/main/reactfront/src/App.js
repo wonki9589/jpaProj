@@ -3,8 +3,8 @@ import SignUp from './pages/signup';
 import Login from './pages/login'; 
 import Home from './pages/Main';
 import About from './pages/about';
-import FindPw from './pages/findPw'
-
+import FindPw from './pages/findPw';
+import Board from './pages/dashboard/Dashboard';
 
 import { BrowserRouter as Router, Route,Routes, Switch } from "react-router-dom";
 import AuthProvider from "./contexts/auth";
@@ -24,14 +24,7 @@ import "./assets/scss/style.scss";
 
 function App() {
   return (
-   <div>
 
-{/*    
-    <Router>
-      <Switch>
-      <Route exact path="/" element={<Home />} />
-      </Switch>
-    </Router> */}
 
       <AuthProvider>
           <CommonProvider>
@@ -41,9 +34,10 @@ function App() {
                   <Router>
                     <Switch>
                       <Route exact path='/' component={Home} />
-                      <Route path='/api/login' component={Login} />
-                      <Route path='/api/signup' component={SignUp} />
-                      <Route path='/api/findPw' component={FindPw} />
+                      <Route path='/login' component={Login} />
+                      <Route path='/signup' component={SignUp} />
+                      <Route path='/findPw' component={FindPw} />
+                      <Route path='/board' component={Board} />
                       <RouteWrapper
                         path="/shop"
                         exact
@@ -67,7 +61,7 @@ function App() {
             </ProductsProvider>
           </CommonProvider>
         </AuthProvider>
-  </div>
+
   );
 }
 
