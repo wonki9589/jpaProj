@@ -53,15 +53,16 @@ public class MemberController {
     }
     @ResponseBody
     @PostMapping("/api/login")
-    public String loginProcess(@RequestBody MemberForm memberForm){
+    public ResponseEntity loginProcess(@RequestBody MemberForm memberForm){
 
         Member member = new Member();
         member.setUsername(memberForm.getUsername());
         member.setPassword(memberForm.getPassword());
 
-//        memberService.
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("name", member.getUsername());
 
-        return "로그인 ok";
+        return ResponseEntity.ok().headers(headers).body("SUCCESS");
     }
 
 }

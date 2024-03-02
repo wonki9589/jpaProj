@@ -36,7 +36,12 @@ public class MemberService {
 
         member.setUsername(member.getUsername());
         member.setPassword(bCryptPasswordEncoder.encode(member.getPassword()));
+        /*
         member.setRole("ROLE_ADMIN");
+        // 운영자
+        * */
+        member.setRole("ROLE_CUSTOMER");
+
 
         memberRepository.save(member);
         return member.getId();

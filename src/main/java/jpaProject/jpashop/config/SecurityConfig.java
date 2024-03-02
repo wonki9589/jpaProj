@@ -17,6 +17,8 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
 import java.util.Collections;
 
 @Configuration
@@ -69,7 +71,12 @@ public class SecurityConfig {
                         configuration.setAllowedHeaders(Collections.singletonList("*"));
                         configuration.setMaxAge(3600L);
 
-                        configuration.setExposedHeaders(Collections.singletonList("Authorization"));
+                        /*
+                         * postman header 추가 , web response header 추가 안되는 부분 해결
+                         *  configuration.setExposedHeaders(Collections.singletonList("Authorization"));
+                         * */
+                        configuration.setExposedHeaders(Arrays.asList("Authorization","RULE"));
+
 
                         return configuration;
                     }
@@ -86,8 +93,8 @@ public class SecurityConfig {
 
         http
                 .authorizeHttpRequests((auth) -> auth
-                        .requestMatchers("/api/signup", "/", "/api/login" , "/api/member/new", "api/product", "/api/member/send").permitAll()
-                        .requestMatchers("/api/admin").hasRole("ADMIN")
+                        .requestMatchers("/signup", "/", "/login" , "/shop").permitAll()
+                        .requestMatchers("/api/board", "/checkout").hasRole("ADMIN")
                         /* 원하는 페이지 URL 허용시키겠다.*/
                         .anyRequest().permitAll());
                         /* anyRequest().authenticated() 403 error 뜸  */

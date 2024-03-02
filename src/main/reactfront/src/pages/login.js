@@ -35,11 +35,13 @@ export default function Login() {
          .then((response) => {
             if (response.status === 200) {
                        sessionStorage.setItem('login-token', response.headers.authorization);
-                       sessionStorage.setItem('username', username);
+                       sessionStorage.setItem('username',username);
+                       sessionStorage.setItem('RULE',response.headers.rule);
                        console.log(response);
                 }
              document.location.href = "/";
              }
+
          )
          .catch((error) => {
              console.log('error !!!',error.response);
