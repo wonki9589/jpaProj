@@ -129,9 +129,7 @@ export default function Dashboard() {
               {/* Recent Orders */}
               <Grid item xs={12}>
                 <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
-                /*
-                  여기가 회원들 목록 뽑아내는곳
-                 */
+
                   <Orders />
                 </Paper>
               </Grid>
