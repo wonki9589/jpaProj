@@ -1,4 +1,10 @@
 import * as React from 'react';
+import Chart from './Chart';
+import Deposits from './Deposits';
+import Orders from './Orders';
+import Header from '../../components/MainHeader';
+
+
 import { styled, createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import MuiDrawer from '@mui/material/Drawer';
@@ -9,9 +15,6 @@ import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Link from '@mui/material/Link';
-import Chart from './Chart';
-import Deposits from './Deposits';
-import Orders from './Orders';
 
 function Copyright(props) {
   return (
@@ -97,7 +100,7 @@ export default function Dashboard() {
             overflow: 'auto',
           }}
         >
-      
+        <Header />
           <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
             <Grid container spacing={3}>
               {/* Chart */}

@@ -29,7 +29,7 @@ export default function Header() {
             <div className="container-xxl position-relative p-0">
                 <nav className="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
                 <a href="/" className="navbar-brand p-0">
-                    <h1 className="m-0">JPA Project</h1>
+                    <h1 className="m-0">veggy</h1>
                     {/* <img src="img/logo.png" alt="Logo"> */}
                 </a>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -66,21 +66,7 @@ export default function Header() {
                 </div>
                 </nav>
                 <div className="container-xxl bg-primary hero-header">
-                <div className="container">
-                    <div className="row g-5 align-items-center">
-                    <div className="col-lg-6 text-center text-lg-start"><h1>To-Do List</h1>
-                        <p className="text-white pb-3 animated zoomIn" >
-                         2. 로그인 서비스 구현
-                         3.Redirect 작동안함
-                         4. 아이디찾기 기능 구현
-                         </p>
-                        <a href className="btn btn-outline-light rounded-pill border-2 py-3 px-5 animated slideInRight">Learn More</a>
-                    </div>
-                    <div className="col-lg-6 text-center text-lg-start">
-                        <img className="img-fluid animated zoomIn" src="img/hero.png" alt />
-                    </div>
-                    </div>
-                </div>
+
                 </div>
             </div>
             {/* Navbar & Hero End */}
