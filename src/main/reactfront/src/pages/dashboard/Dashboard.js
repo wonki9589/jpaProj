@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState,useEffect } from 'react';
 import Chart from './Chart';
 import Deposits from './Deposits';
 import Orders from './Orders';
@@ -80,9 +80,21 @@ const defaultTheme = createTheme();
 
 export default function Dashboard() {
   const [open, setOpen] = React.useState(true);
+  const [rule, setRule] = useState('');
+
   const toggleDrawer = () => {
     setOpen(!open);
   };
+
+   useEffect(()=>{
+        if (sessionStorage.getItem('RULE') == 'RULE_ADMIN') {
+            /* 세션 RULE */
+            alert("관리자입니다.");
+        }else{
+            alert("일반유저는 볼수없습니다.");
+            document.location.href = "/";
+        }
+      },[])
 
   return (
     <ThemeProvider theme={defaultTheme}>
