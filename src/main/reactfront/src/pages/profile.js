@@ -10,7 +10,7 @@ import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import Face5Icon from '@mui/icons-material/Face5';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -48,13 +48,23 @@ export default function SignUp() {
 
 
 
+   const AccessPage = () => {
+      console.log("session username" + sessionStorage.getItem('username'));
+     if(sessionStorage.getItem('username') == '' || sessionStorage.getItem('username') == null ){
+         alert("로그인 후 이용 가능합니다.");
+          document.location.href = "/login";
+     }else{
+         setUserName(sessionStorage.getItem('username'));
+     }
+   }
+
   const handleSubmit = (event) => {
     event.preventDefault();
 
     API
-    .post('',{
+    .post('/profile/update',{
+      username : username,
       email: email,
-      password: password,
       city : city,
       street : street,
       zipcode : zipcode
@@ -62,35 +72,23 @@ export default function SignUp() {
     .then((response) => {
         console.log(response.data);
          if(response.status === 200){
-            alert("")
+
          }
-         document.location.href = "/";
+        //document.location.href = "/";
          // session 지워야함
     }
     )
     .catch((error) => {
     // 400 코드면 여기로옴
-       if(error.response.status === 400){
-              /* 서버에서 날라오는 유효성검사 message*/
-             alert(error.response.data.errors[0].defaultMessage);
-       }
+         console.log(error);
     })
   };
-
-
-  const AccessPage = () => {
-     console.log("session username" + sessionStorage.getItem('username'));
-    if(sessionStorage.getItem('username') == '' || sessionStorage.getItem('username') == null ){
-        alert("로그인 후 이용 가능합니다.");
-         document.location.href = "/login";
-    }else{
-        setUserName(sessionStorage.getItem('username'));
-    }
-  }
 
   useEffect(()=>{
      AccessPage();
   },[])
+
+
   return (
     <ThemeProvider theme={defaultTheme}>
       <Container component="main" maxWidth="xs">
@@ -104,7 +102,7 @@ export default function SignUp() {
           }}
         >
           <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-            <LockOutlinedIcon />
+            <Face5Icon />
           </Avatar>
           <Typography component="h1" variant="h5">
             Profile
@@ -191,12 +189,12 @@ export default function SignUp() {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Sign Up
+              Save
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link href="/login" variant="body2">
-                  Already have an account? Sign in
+                <Link href="/" variant="body2">
+                  Don't you want to change your information?
                 </Link>
               </Grid>
             </Grid>

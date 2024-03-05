@@ -10,7 +10,7 @@ import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Avatar from '@mui/material/Avatar';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import KeyIcon from '@mui/icons-material/Key';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Link from '@mui/material/Link';
@@ -72,7 +72,7 @@ export default function FindPw() {
             }}
            >
           <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-           <LockOutlinedIcon />
+           <KeyIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
             Find Password
