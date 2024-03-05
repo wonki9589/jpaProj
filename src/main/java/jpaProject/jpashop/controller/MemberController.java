@@ -5,6 +5,7 @@ import jakarta.validation.Valid;
 import jpaProject.jpashop.domain.Address;
 import jpaProject.jpashop.domain.Member;
 import jpaProject.jpashop.repository.MemberRepository;
+import jpaProject.jpashop.repository.UserRepository;
 import jpaProject.jpashop.service.CustomUserDetailsService;
 import jpaProject.jpashop.service.MemberService;
 import lombok.RequiredArgsConstructor;
@@ -25,8 +26,17 @@ import java.util.Arrays;
 @RequiredArgsConstructor
 public class MemberController {
 
-
+    private final UserRepository userRepository;
     private final MemberService memberService;
+
+    @ResponseBody
+    @GetMapping("/api/member")
+    public ResponseEntity<Member> showInfo(@RequestParam(name = "username") String username) {
+        userRepository.findByUsername(username);
+
+        return ResponseEntity.ok(userRepository.findByUsername(username));
+    }
+
 
     @ResponseBody
     @GetMapping("/api/member/new/exist")

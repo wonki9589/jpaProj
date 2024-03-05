@@ -45,13 +45,16 @@ export default function SignUp() {
   const [city, setCity] = useState('');
   const [street, setStreet] = useState('');
   const [zipcode, setZipcode] = useState('');
-  const [duplicate, setDuplicate] = useState(true);
+  const [duplicate, setDuplicate] = useState(false);
 
 
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
+    if( duplicate == false){
+        alert("중복검사부터 해주세요.");
+        return false;
+    }
     API
     .post('/member/new',{
       username : username,

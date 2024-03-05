@@ -5,7 +5,7 @@ spring:
     password: Kindkill0718!!
     driver-class-name: com.mysql.cj.jdbc.Driver
   jwt:
-    secret: vmfhaltmskdlstkfkdgodyroqkfwkdbalroqkfwkdbalaaaaaaaaaaaaaabbbbb
+    secret: vmfhaltmskdlstkfkdgodyroqkfwkdbalroqkfwkdbalaaaaaaaaabbbb
   jpa:
     hibernate:
       ddl-auto: none

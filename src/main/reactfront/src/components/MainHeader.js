@@ -7,7 +7,8 @@ export default function Header() {
     const [isLogin, setIsLogin] = useState(false); //로그인 관리
     const deleteSession = () => {
          sessionStorage.removeItem("login-token");
-          sessionStorage.removeItem("username");
+         sessionStorage.removeItem("username");
+         sessionStorage.removeItem("ROLE");
      };
 
      useEffect(() => {

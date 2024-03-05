@@ -31,11 +31,7 @@ function Copyright(props) {
   );
 }
 
-// TODO remove, this demo shouldn't need to reset the theme.
-
 const defaultTheme = createTheme();
-//axios.defaults.withCredentials = true; // withCredentials 전역 설정
-
 
 export default function SignUp() {
   const [username, setUserName] = useState('');
@@ -49,7 +45,6 @@ export default function SignUp() {
 
 
    const AccessPage = () => {
-      console.log("session username" + sessionStorage.getItem('username'));
      if(sessionStorage.getItem('username') == '' || sessionStorage.getItem('username') == null ){
          alert("로그인 후 이용 가능합니다.");
           document.location.href = "/login";
@@ -57,6 +52,29 @@ export default function SignUp() {
          setUserName(sessionStorage.getItem('username'));
      }
    }
+
+    const showInfo = () => {
+       API
+       .get('/member',{
+         params:{
+            username : sessionStorage.getItem('username')
+         }
+       })
+       .then((response) => {
+           console.log(response.data);
+            if(response.status === 200){
+                setEmail(response.data.email);
+                setCity(response.data.address.city);
+                setStreet(response.data.address.street);
+                setZipcode(response.data.address.zipcode);
+            }
+       })
+       .catch((error) => {
+       // 400 코드면 여기로옴
+            console.log(error);
+       })
+     };
+
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -72,20 +90,19 @@ export default function SignUp() {
     .then((response) => {
         console.log(response.data);
          if(response.status === 200){
-
+            alert("개인정보가 수정되었습니다.");
+            document.location.href = "/";
          }
-        //document.location.href = "/";
-         // session 지워야함
-    }
-    )
+    })
     .catch((error) => {
     // 400 코드면 여기로옴
          console.log(error);
     })
   };
 
-  useEffect(()=>{
+  useEffect( () => {
      AccessPage();
+     showInfo();
   },[])
 
 
@@ -116,7 +133,7 @@ export default function SignUp() {
                   autoComplete="given-name"
                   fullWidth
                   id="username"
-                  label={username}
+                  label={username || ""}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -127,7 +144,7 @@ export default function SignUp() {
                   label="Email Address"
                   name="email"
                   autoComplete="email"
-                  value = {email}
+                  value = {email ||""}
                   onChange= {(e) => {
                       setEmail(e.target.value);
                       }
@@ -143,7 +160,7 @@ export default function SignUp() {
                     type="city"
                     id="city"
                     autoComplete="new-city"
-                    value = {city}
+                    value = {city || ""}
                     onChange= {(e) => {
                       setCity(e.target.value);
                       }
@@ -159,7 +176,7 @@ export default function SignUp() {
                   type="street"
                   id="street"
                   autoComplete="new-street"
-                  value = {street}
+                  value = {street || ""}
                   onChange= {(e) => {
                      setStreet(e.target.value);
                     }
@@ -175,7 +192,7 @@ export default function SignUp() {
                      type="zipcode"
                      id="zipcode"
                      autoComplete="new-zipcode"
-                     value = {zipcode}
+                     value = {zipcode || ""}
                      onChange= {(e) => {
                         setZipcode(e.target.value);
                        }
@@ -194,7 +211,7 @@ export default function SignUp() {
             <Grid container justifyContent="flex-end">
               <Grid item>
                 <Link href="/" variant="body2">
-                  Don't you want to change your information?
+                  Home ?
                 </Link>
               </Grid>
             </Grid>

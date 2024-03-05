@@ -18,14 +18,14 @@ import java.util.List;
 public class MemberService {
 
     private final MemberRepository memberRepository;
-    private final UserRepository userRepository;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
+    private final UserRepository userRepository;
 
-    public MemberService(MemberRepository memberRepository, UserRepository userRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
+    public MemberService(MemberRepository memberRepository, BCryptPasswordEncoder bCryptPasswordEncoder, UserRepository userRepository) {
 
         this.memberRepository = memberRepository;
-        this.userRepository = userRepository;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+        this.userRepository = userRepository;
     }
 
     /**
@@ -69,19 +69,15 @@ public class MemberService {
     /**
      * 회원정보 수정
      */
-
     @Transactional
-    public void updateProfile(ProfileForm profileForm){
+    public Member updateProfile(ProfileForm profileForm){
        Member findMember =  userRepository.findByUsername(profileForm.getUsername());
-
        Address address = new Address(profileForm.getCity(),profileForm.getStreet(),profileForm.getZipcode());
 
        findMember.setEmail(profileForm.getEmail());
        findMember.setAddress(address);
 
-        // 개인 정보 업데이트
-//        memberRepository.updateProfile(findMember);
-
+        return findMember;
     }
     /**
      * 회원 전체 조회
