@@ -65,4 +65,14 @@ public class MemberController {
         return ResponseEntity.ok().headers(headers).body("SUCCESS");
     }
 
+
+    @ResponseBody
+    @PostMapping("/api/profile/update")
+    public ResponseEntity profileUpdate(@RequestBody ProfileForm profileForm){
+
+        memberService.updateProfile(profileForm);
+
+        return ResponseEntity.ok(200);
+    }
+
 }

@@ -1,13 +1,11 @@
 package jpaProject.jpashop.service;
 
+import jpaProject.jpashop.controller.ProfileForm;
+import jpaProject.jpashop.domain.Address;
 import jpaProject.jpashop.domain.Member;
 import jpaProject.jpashop.repository.MemberRepository;
 import jpaProject.jpashop.repository.UserRepository;
-import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,14 +14,17 @@ import java.util.List;
 
 @Service
 @Transactional(readOnly = true)
+@Slf4j
 public class MemberService {
 
     private final MemberRepository memberRepository;
+    private final UserRepository userRepository;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    public MemberService(MemberRepository memberRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
+    public MemberService(MemberRepository memberRepository, UserRepository userRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
 
         this.memberRepository = memberRepository;
+        this.userRepository = userRepository;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
@@ -65,6 +66,23 @@ public class MemberService {
         return true;
     }
 
+    /**
+     * 회원정보 수정
+     */
+
+    @Transactional
+    public void updateProfile(ProfileForm profileForm){
+       Member findMember =  userRepository.findByUsername(profileForm.getUsername());
+
+       Address address = new Address(profileForm.getCity(),profileForm.getStreet(),profileForm.getZipcode());
+
+       findMember.setEmail(profileForm.getEmail());
+       findMember.setAddress(address);
+
+        // 개인 정보 업데이트
+//        memberRepository.updateProfile(findMember);
+
+    }
     /**
      * 회원 전체 조회
      */

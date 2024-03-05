@@ -75,7 +75,7 @@ public class SecurityConfig {
                          * postman header 추가 , web response header 추가 안되는 부분 해결
                          *  configuration.setExposedHeaders(Collections.singletonList("Authorization"));
                          *    */
-                        configuration.setExposedHeaders(Arrays.asList("Authorization","RULE"));
+                        configuration.setExposedHeaders(Arrays.asList("Authorization","ROLE"));
 
 
                         return configuration;

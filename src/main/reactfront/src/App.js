@@ -5,6 +5,7 @@ import Home from './pages/Main';
 import About from './pages/about';
 import FindPw from './pages/findPw';
 import Board from './pages/dashboard/Dashboard';
+import Profile from './pages/profile';
 
 import { BrowserRouter as Router, Route,Routes, Switch } from "react-router-dom";
 import AuthProvider from "./contexts/auth";
@@ -38,6 +39,7 @@ function App() {
                       <Route path='/signup' component={SignUp} />
                       <Route path='/findPw' component={FindPw} />
                       <Route path='/board' component={Board} />
+                       <Route path='/profile' component={Profile} />
                       <RouteWrapper
                         path="/shop"
                         exact

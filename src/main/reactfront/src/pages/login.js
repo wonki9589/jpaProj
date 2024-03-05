@@ -36,7 +36,7 @@ export default function Login() {
             if (response.status === 200) {
                        sessionStorage.setItem('login-token', response.headers.authorization);
                        sessionStorage.setItem('username',username);
-                       sessionStorage.setItem('RULE',response.headers.rule);
+                       sessionStorage.setItem('ROLE',response.headers.role);
                        console.log(response);
                 }
              document.location.href = "/";

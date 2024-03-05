@@ -43,11 +43,9 @@ export default function Header() {
                     <div className="nav-item dropdown">
                         <a href="#" className="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                         <div className="dropdown-menu m-0">
-                         <Link href="/checkout" className="nav-item nav-link" style={{textDecoration: 'none' ,padding : '5px' , color : 'black'}}>Shipping Address</Link>
-                        <a href="quote.html" className="dropdown-item">Free Quote</a>
-                        <a href="team.html" className="dropdown-item">Our Team</a>
-                        <a href="testimonial.html" className="dropdown-item">Testimonial</a>
-                        <a href="404.html" className="dropdown-item">404 Page</a>
+                         <Link href="/checkout" className="nav-item nav-link" style={{textDecoration: 'none' ,padding : '5px' , color : 'gray'}}>Shipping Address</Link>
+                         <Link href="/profile" className="nav-item nav-link" style={{textDecoration: 'none' ,padding : '5px' , color : 'gray'}}>Profile</Link>
+                         <Link href="/board" className="nav-item nav-link" style={{textDecoration: 'none' ,padding : '5px' , color : 'gray'}}>Admin Board</Link>
                         </div>
                     </div>
 

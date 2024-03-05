@@ -82,7 +82,7 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
 
         response.addHeader("Authorization", "Bearer " + token);
         response.addHeader("username",username);
-        response.addHeader("RULE",role);
+        response.addHeader("ROLE",role);
 
     }
 

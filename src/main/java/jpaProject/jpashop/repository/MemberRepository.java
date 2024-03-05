@@ -1,6 +1,6 @@
 package jpaProject.jpashop.repository;
 
-
+import org.springframework.transaction.annotation.Transactional;
 import jpaProject.jpashop.domain.Member;
 import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
@@ -33,4 +33,5 @@ public class MemberRepository {
                 .setParameter("username", username)
                 .getResultList();
     }
+
 }

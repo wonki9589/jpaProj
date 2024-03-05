@@ -87,7 +87,7 @@ export default function Dashboard() {
   };
 
    useEffect(()=>{
-        if (sessionStorage.getItem('RULE') == 'RULE_ADMIN') {
+        if (sessionStorage.getItem('ROLE') == 'ROLE_ADMIN') {
             /* 세션 RULE */
             alert("관리자입니다.");
         }else{
