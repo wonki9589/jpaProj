@@ -1,5 +1,7 @@
 import React from 'react'
 
+
+
 const MainFooter = () => {
     return (
         <div>
@@ -9,60 +11,27 @@ const MainFooter = () => {
                 <div className="row g-5">
                     <div className="col-md-6 col-lg-3">
                     <h5 className="text-white mb-4">Get In Touch</h5>
-                    <p><i className="fa fa-map-marker-alt me-3" />123 Street, New York, USA</p>
-                    <p><i className="fa fa-phone-alt me-3" />+012 345 67890</p>
-                    <p><i className="fa fa-envelope me-3" />info@example.com</p>
-                    <div className="d-flex pt-2">
-                        <a className="btn btn-outline-light btn-social" href><i className="fab fa-twitter" /></a>
-                        <a className="btn btn-outline-light btn-social" href><i className="fab fa-facebook-f" /></a>
-                        <a className="btn btn-outline-light btn-social" href><i className="fab fa-youtube" /></a>
-                        <a className="btn btn-outline-light btn-social" href><i className="fab fa-instagram" /></a>
-                        <a className="btn btn-outline-light btn-social" href><i className="fab fa-linkedin-in" /></a>
-                    </div>
+                    <p><i className="fa fa-phone-alt me-3" />010 3685 9473</p>
+                    <br></br>
+                    <p><i className="fa fa-envelope me-3" />wonki95891@gmail.com</p>
                     </div>
                     <div className="col-md-6 col-lg-3">
                     <h5 className="text-white mb-4">Quick Link</h5>
-                    <a className="btn btn-link" href>About Us</a>
-                    <a className="btn btn-link" href>Contact Us</a>
-                    <a className="btn btn-link" href>Privacy Policy</a>
-                    <a className="btn btn-link" href>Terms &amp; Condition</a>
-                    <a className="btn btn-link" href>Career</a>
+                    <a className="btn btn-link" href="https://github.com/wonki9589/jpaShop">View Source on github</a>
+                    <a className="btn btn-link" href="https://blog.naver.com/wonki9589">Read My Blog</a>
                     </div>
+
                     <div className="col-md-6 col-lg-3">
-                    <h5 className="text-white mb-4">Popular Link</h5>
-                    <a className="btn btn-link" href>About Us</a>
-                    <a className="btn btn-link" href>Contact Us</a>
-                    <a className="btn btn-link" href>Privacy Policy</a>
-                    <a className="btn btn-link" href>Terms &amp; Condition</a>
-                    <a className="btn btn-link" href>Career</a>
+                    <h5 className="text-white mb-4">Reference Link</h5>
+                    <a className="btn btn-link" href="https://mui.com/">MUI</a>
+                    <a className="btn btn-link" href="https://react-bootstrap.netlify.app/">React Bootstrap</a>
+                    <a className="btn btn-link" href="https://spring.io/projects/spring-boot">Spring Boot</a>
                     </div>
+
                     <div className="col-md-6 col-lg-3">
                     <h5 className="text-white mb-4">Newsletter</h5>
-                    <p>Lorem ipsum dolor sit amet elit. Phasellus nec pretium mi. Curabitur facilisis ornare velit non vulpu</p>
-                    <div className="position-relative w-100 mt-3">
-                        <input className="form-control border-0 rounded-pill w-100 ps-4 pe-5" type="text" placeholder="Your Email" style={{height: 48}} />
-                        <button type="button" className="btn shadow-none position-absolute top-0 end-0 mt-1 me-2"><i className="fa fa-paper-plane text-primary fs-4" /></button>
-                    </div>
-                    </div>
-                </div>
-                </div>
-                <div className="container">
-                <div className="copyright">
-                    <div className="row">
-                    <div className="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                        © <a className="border-bottom" href="#">Your Site Name</a>, All Right Reserved.
-                        {/*/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. *** /*/}
-                        Designed By <a className="border-bottom" href="https://htmlcodex.com">HTML Codex</a>
-                        <br />Distributed By: <a className="border-bottom" href="https://themewagon.com" target="_blank">ThemeWagon</a>
-                    </div>
-                    <div className="col-md-6 text-center text-md-end">
-                        <div className="footer-menu">
-                        <a href>Home</a>
-                        <a href>Cookies</a>
-                        <a href>Help</a>
-                        <a href>FQAs</a>
-                        </div>
-                    </div>
+                    <p>Scheduled to be distributed in March </p>
+                    
                     </div>
                 </div>
                 </div>

@@ -81,36 +81,35 @@ export default function SignUp() {
     })
   };
 
-      const dupliUsername = (event) => {
-        // 클릭시 아이디 중복검사
-        event.preventDefault();
-        if(username===""){
-            alert("이름을 입력해주세요");
-            return false;
-        }
-        API
-           .get('/member/new/exist',{
-             params:{
-                username : username
-             }
-           })
-           .then((response) => {
-                console.log("response : " +response.data);
-                if(response.data === false){
-                    alert("이미 가입된 이름이 있습니다.");
-                    setDuplicate(false);
-                    // 인풋버튼 옆에 글씨나오게끔하고 버튼을 readonly 로 바꾸는 작업
-                }
-                else{
-                  alert("가입 가능한 이름입니다.");
-                 setDuplicate(true);
-                }
-            })
-            .catch((error) => {
-            // 400 코드면 여기로옴
-                console.log("error" +error.data);
-            })
-      };
+  const dupliUsername = (event) => {
+    // 클릭시 아이디 중복검사
+    event.preventDefault();
+    if(username===""){
+        alert("이름을 입력해주세요");
+        return false;
+    }
+    API
+       .get('/member/new/exist',{
+         params:{
+            username : username
+         }
+       })
+       .then((response) => {
+            console.log("response : " +response.data);
+            if(response.data === false){
+                alert("이미 가입된 이름이 있습니다.");
+                setDuplicate(false);
+            }
+            else{
+              alert("가입 가능한 이름입니다.");
+             setDuplicate(true);
+            }
+        })
+        .catch((error) => {
+            alert("다시 시도해주세요.");
+            console.log("error" +error.data);
+        })
+  };
 
 
   return (

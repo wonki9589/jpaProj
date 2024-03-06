@@ -32,11 +32,12 @@ const Header = (props) => {
       <div className="container">
         <div className="brand">
           <Link to="/">
-            <img
-              className="logo"
-              src="https://res.cloudinary.com/sivadass/image/upload/v1493547373/dummy-logo/Veggy.png"
-              alt="Veggy Brand Logo"
-            />
+            <h2 style={{color:'green'}}> Curly </h2>
+{/*             <img */}
+{/*               className="logo" */}
+{/*               src="https://res.cloudinary.com/sivadass/image/upload/v1493547373/dummy-logo/Veggy.png" */}
+{/*               alt="Veggy Brand Logo" */}
+{/*             /> */}
           </Link>
         </div>
 

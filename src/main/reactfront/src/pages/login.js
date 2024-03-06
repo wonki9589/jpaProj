@@ -38,15 +38,13 @@ export default function Login() {
                        sessionStorage.setItem('username',username);
                        sessionStorage.setItem('ROLE',response.headers.role);
                        console.log(response);
-                }
-             document.location.href = "/";
              }
-
-         )
+             document.location.href = "/";
+         })
          .catch((error) => {
+             alert(" 아이디또는 비밀번호를 잘못 입력했습니다.");
              console.log('error !!!',error.response);
          })
-
     };
 
     return (
