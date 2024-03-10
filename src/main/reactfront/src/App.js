@@ -39,7 +39,7 @@ function App() {
                       <Route path='/signup' component={SignUp} />
                       <Route path='/findPw' component={FindPw} />
                       <Route path='/board' component={Board} />
-                       <Route path='/profile' component={Profile} />
+//                       <Route path='/profile' component={Profile} />
                       <RouteWrapper
                         path="/shop"
                         exact

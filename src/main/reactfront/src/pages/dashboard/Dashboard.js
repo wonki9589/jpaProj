@@ -87,10 +87,16 @@ export default function Dashboard() {
   };
 
    useEffect(()=>{
-        if (sessionStorage.getItem('ROLE') == 'ROLE_ADMIN') {
+        console.log(localStorage.getItem('ROLE'));
+        if (localStorage.getItem('ROLE') == 'ROLE_ADMIN') {
             /* 세션 RULE */
-            alert("관리자입니다.");
-        }else{
+            //alert("관리자입니다.");
+        }
+        else if(localStorage.getItem('ROLE') == null) {
+             alert("로그인 후 이용해주세요.");
+             document.location.href = "/login";
+        }
+        else{
             alert("일반유저는 볼수없습니다.");
             document.location.href = "/";
         }

@@ -45,11 +45,11 @@ export default function SignUp() {
 
 
    const AccessPage = () => {
-     if(sessionStorage.getItem('username') == '' || sessionStorage.getItem('username') == null ){
+     if(localStorage.getItem('username') == '' || localStorage.getItem('username') == null ){
          alert("로그인 후 이용 가능합니다.");
           document.location.href = "/login";
      }else{
-         setUserName(sessionStorage.getItem('username'));
+         setUserName(localStorage.getItem('username'));
      }
    }
 
@@ -57,7 +57,7 @@ export default function SignUp() {
        API
        .get('/member',{
          params:{
-            username : sessionStorage.getItem('username')
+            username : localStorage.getItem('username')
          }
        })
        .then((response) => {
@@ -211,7 +211,7 @@ export default function SignUp() {
             <Grid container justifyContent="flex-end">
               <Grid item>
                 <Link href="/" variant="body2">
-                  Home ?
+                  Go to Main
                 </Link>
               </Grid>
             </Grid>

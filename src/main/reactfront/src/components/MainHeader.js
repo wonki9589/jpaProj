@@ -6,18 +6,18 @@ import Link from '@mui/material/Link';
 export default function Header() {
     const [isLogin, setIsLogin] = useState(false); //로그인 관리
     const deleteSession = () => {
-         sessionStorage.removeItem("login-token");
-         sessionStorage.removeItem("username");
-         sessionStorage.removeItem("ROLE");
+         localStorage.removeItem("login-token");
+         localStorage.removeItem("username");
+         localStorage.removeItem("ROLE");
      };
 
      useEffect(() => {
-        if (sessionStorage.getItem("login-token") === null) {
-          // sessionStorage 에 name 라는 key 값으로 저장된 값이 없다면
+        if (localStorage.getItem("login-token") === null) {
+          // localStorage 에 name 라는 key 값으로 저장된 값이 없다면
           console.log("isLogin ??", isLogin);
 
         } else {
-          // sessionStorage 에 name 라는 key 값으로 저장된 값이 있다면
+          // localStorage 에 name 라는 key 값으로 저장된 값이 있다면
           // 로그인 상태 변경
           setIsLogin(true);
           console.log("isLogin ?? :: ", isLogin);
