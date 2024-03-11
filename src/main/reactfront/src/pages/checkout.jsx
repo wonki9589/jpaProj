@@ -8,7 +8,6 @@ import {
   saveShippingAddress
 } from "../contexts/checkout";
 import { CartStateContext } from "../contexts/cart";
-import { AuthStateContext, AuthDispatchContext, signOut } from "../contexts/auth";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import _get from "lodash.get";
@@ -28,18 +27,17 @@ const AddressSchema = Yup.object().shape({
 });
 
 const LoginStep = () => {
-  const { user, isLoggedIn } = useContext(AuthStateContext);
-  const authDispatch = useContext(AuthDispatchContext);
+
   const checkoutDispatch = useContext(CheckoutDispatchContext);
   const handleContinueShopping = () => {
         window.location.replace("/shop");
   };
   const handleLoginAsDiffUser = () => {
-    signOut(authDispatch);
-        window.location.replace("/auth");
+
+
   };
   const handleGotoLogin = () => {
-       window.location.replace("/auth");
+
   };
   const handleProceed = () => {
     setCheckoutStep(checkoutDispatch, CHECKOUT_STEPS.SHIPPING);
@@ -47,28 +45,12 @@ const LoginStep = () => {
   return (
     <div className="detail-container">
       <h2>Sign In now!</h2>
-      <div className="auth-message">
-        {isLoggedIn ? (
-          <>
-            <p>
-              Logged in as <span>{user.username}</span>
-            </p>
-            <button onClick={() => handleLoginAsDiffUser()}>
-              Login as Different User
-            </button>
-          </>
-        ) : (
-          <>
-            <p>Please login to continue.</p>
-            <button onClick={() => handleGotoLogin()}>Login</button>
-          </>
-        )}
-      </div>
+
       <div className="actions">
         <button className="outline" onClick={() => handleContinueShopping()}>
           <i className="rsc-icon-arrow_back" /> Continue Shopping
         </button>
-        <button disabled={!isLoggedIn} onClick={() => handleProceed()}>
+        <button  onClick={() => handleProceed()}>
           Proceed
           <i className="rsc-icon-arrow_forward" />
         </button>
@@ -91,13 +73,7 @@ const AddressStep = () => {
       <h2>Shipping Address</h2>
       <Formik
         initialValues={{
-          fullName: "John Doe",
-          phoneNumber: "5552229876",
-          addressLine: "L1, Palm Residency",
-          city: "Kingston",
-          state: "New York",
-          code: "12401",
-          country: "United States"
+          // 로그인한 회원 배송정보 담을 곳
         }}
         validationSchema={AddressSchema}
         onSubmit={async (values, { resetForm }) => {
@@ -189,10 +165,8 @@ const PaymentStep = () => {
   const handlePayment = () => {};
   return (
     <div className="detail-container">
-      <h2>Payment</h2>
-      {/* <div>
-        <pre>{JSON.stringify(shippingAddress, null, 0)}</pre>
-      </div> */}
+      <h2>Reservation</h2>
+
       <div className="actions">
         <button
           type="button"
@@ -212,7 +186,6 @@ const PaymentStep = () => {
 
 const Checkout = () => {
   const { items = [] } = useContext(CartStateContext);
-  const { isLoggedIn } = useContext(AuthStateContext);
   const { step, shippingAddress } = useContext(CheckoutStateContext);
   const checkoutDispatch = useContext(CheckoutDispatchContext);
   const totalItems = items.length;
@@ -228,7 +201,6 @@ const Checkout = () => {
           <ul className="timeline">
             <li
               className={classNames({
-                done: isLoggedIn,
                 active: step === CHECKOUT_STEPS.AUTH
               })}
               onClick={() => handleClickTimeline(CHECKOUT_STEPS.AUTH)}
