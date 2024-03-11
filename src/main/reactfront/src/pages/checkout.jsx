@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext , useState } from "react";
 import classNames from "classnames";
 import {
   CheckoutStateContext,
@@ -12,6 +12,7 @@ import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import _get from "lodash.get";
 import Input from "../components/core/form-controls/Input";
+import Link from '@mui/material/Link';
 
 const AddressSchema = Yup.object().shape({
   fullName: Yup.string().required("Full Name is required"),
@@ -26,25 +27,23 @@ const AddressSchema = Yup.object().shape({
   country: Yup.string().required("Country is required!")
 });
 
-const LoginStep = () => {
 
+
+const LoginStep = () => {
+  const userName = localStorage.getItem('username');
   const checkoutDispatch = useContext(CheckoutDispatchContext);
   const handleContinueShopping = () => {
         window.location.replace("/shop");
   };
-  const handleLoginAsDiffUser = () => {
 
-
-  };
-  const handleGotoLogin = () => {
-
-  };
   const handleProceed = () => {
     setCheckoutStep(checkoutDispatch, CHECKOUT_STEPS.SHIPPING);
   };
+
+ 
   return (
     <div className="detail-container">
-      <h2>Sign In now!</h2>
+      <h2 style={{textAlign : "center"}}> {userName} </h2>
 
       <div className="actions">
         <button className="outline" onClick={() => handleContinueShopping()}>
@@ -61,6 +60,12 @@ const LoginStep = () => {
 
 const AddressStep = () => {
   const checkoutDispatch = useContext(CheckoutDispatchContext);
+  const [username, setUserName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [city, setCity] = useState('');
+  const [street, setStreet] = useState('');
+  const [zipcode, setZipcode] = useState('');
 
   const handleBackToLogin = () => {
     setCheckoutStep(checkoutDispatch, CHECKOUT_STEPS.AUTH);
@@ -89,50 +94,40 @@ const AddressStep = () => {
         {() => (
           <Form>
             <div className="field-group">
-              <Field
-                name="fullName"
-                type="text"
-                placeholder="Full Name"
-                component={Input}
-              />
-              <Field
-                name="phoneNumber"
-                type="text"
-                placeholder="Phone Number"
-                component={Input}
-              />
+               <Field
+                  disabled
+                  name="username"
+                  type="text"
+                  placeholder="username"
+                  component={Input}
+                  label={username || ""}
+                />
             </div>
-            <Field
-              name="addressLine"
-              type="text"
-              placeholder="Door No. & Street"
-              component={Input}
-            />
             <div className="field-group">
               <Field
-                name="city"
+                name="Email"
+                type="text"
+                placeholder="Email"
+                component={Input}
+              />
+              <Field
+                name="City"
                 type="text"
                 placeholder="City"
                 component={Input}
               />
-              <Field
-                name="state"
-                type="text"
-                placeholder="State"
-                component={Input}
-              />
             </div>
             <div className="field-group">
               <Field
-                name="code"
-                type="text"
-                placeholder="ZIP/Postal Code"
+                name="Street"
+                type="Street"
+                placeholder="Street"
                 component={Input}
               />
               <Field
-                name="country"
+                name="Zipcode"
                 type="text"
-                placeholder="Country"
+                placeholder="Zipcode"
                 component={Input}
               />
             </div>
@@ -142,7 +137,10 @@ const AddressStep = () => {
                 className="outline"
                 onClick={() => handleBackToLogin()}
               >
-                <i className="rsc-icon-arrow_back" /> Login in as Different User
+               <i className="rsc-icon-arrow_back" />
+                    <Link href="/profile" color="#008000" style={{ textDecoration : "none"}}>
+                        Edit Profile
+                    </Link>
               </button>
               <button type="submit">
                 Save Address
