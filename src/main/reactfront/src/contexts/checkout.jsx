@@ -8,6 +8,7 @@ export const CHECKOUT_STEPS = {
 };
 
 const initialState = {
+ // checkout 페이지 랜더링될때 처음보여줄 화면 step 지정
   step: CHECKOUT_STEPS.AUTH,
   shippingAddress: null
 };
