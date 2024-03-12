@@ -1,5 +1,6 @@
-import React, { useReducer, createContext } from "react";
+import React, { useReducer, createContext, useState } from "react";
 import axios from "axios";
+import API from '../api.js';
 
 const initialState = {
   products: null,
@@ -54,13 +55,13 @@ export const getProducts = (dispatch) => {
   dispatch({
     type: "GET_PRODUCTS_REQUEST"
   });
+
   const url =
     "https://res.cloudinary.com/sivadass/raw/upload/v1535817394/json/products.json";
   axios
     .get(url)
     .then((response) => {
-     //console.log("response" + response.data);
-      console.log("response" + JSON.stringify(response.data));
+      //console.log("response" + JSON.stringify(response.data));
       dispatch({
         type: "GET_PRODUCTS_SUCCESS",
         payload: {
@@ -75,5 +76,7 @@ export const getProducts = (dispatch) => {
       });
     });
 };
+
+
 
 export default ProductsProvider;

@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.util.JSONPObject;
 import jpaProject.jpashop.domain.item.Product;
 import jpaProject.jpashop.repository.ProductRepository;
+import jpaProject.jpashop.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.apache.tomcat.util.json.JSONParser;
 import org.springframework.http.ResponseEntity;
@@ -25,10 +26,20 @@ import java.util.Map;
 @RestController
 @RequiredArgsConstructor
 public class ProductController {
+    private final ProductService productService;
     private final ProductRepository productRepository;
 
     @PostMapping("/api/product")
     public ResponseEntity saveProduct(@RequestBody List<Object> productDTO) {
+
+        /**
+        * DB에 데이터가 존재하는지
+        * */
+        List<Product> data = productService.existData();
+        if(!data.isEmpty()){
+                throw new IllegalStateException("이미 데이터가 있습니다.");
+        }
+
         /**
          * hashmap  -> list
          * com.fasterxml.jackson.databind.exc.MismatchedInputException: Cannot deserialize value of type 'java.util.ArrayList'

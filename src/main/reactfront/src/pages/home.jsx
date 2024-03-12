@@ -1,5 +1,7 @@
 import React, { useEffect, useContext } from "react";
 import ProductCard from "../components/Product";
+import API from '../api.js';
+
 import {
   ProductsStateContext,
   ProductsDispatchContext,
@@ -21,8 +23,28 @@ const Home = () => {
       );
     });
 
+  const saveDB = () => {
+    API
+     .post('/product'
+            , JSON.stringify(productsList)
+            ,{ header : {
+                "Content-Type": 'application/json'
+                 }})
+     .then((response) => {
+        console.log('success !!!',response.data);
+     })
+     .catch((error) => {
+        console.log('error !!!',error.response);
+     })
+  }
+
   useEffect(() => {
     getProducts(dispatch);
+    /* 이미 DB에 저장되어 있음
+
+    */
+    saveDB();
+
   }, []);
 
   if (isLoading) {
