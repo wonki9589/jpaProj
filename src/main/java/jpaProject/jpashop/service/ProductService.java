@@ -24,7 +24,9 @@ public class ProductService {
 
     public List<Product> existData(){
         List<Product> data = manageProductRepository.findAll();
-
+        if(!data.isEmpty()){
+            throw new IllegalStateException("이미 데이터가 있습니다.");
+        }
         return data;
     }
 }

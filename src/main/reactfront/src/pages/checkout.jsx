@@ -224,7 +224,8 @@ const Checkout = () => {
 
   useEffect( () => {
     subTotalSum()
- },[])
+    console.log("ㄱ계속 마운트 되나 ? ");
+ },[subTotal])
 
   return (
     <div className="checkout-page">

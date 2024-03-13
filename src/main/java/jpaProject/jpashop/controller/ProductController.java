@@ -32,14 +32,7 @@ public class ProductController {
     @PostMapping("/api/product")
     public ResponseEntity saveProduct(@RequestBody List<Object> productDTO) {
 
-        /**
-        * DB에 데이터가 존재하는지
-        * */
-        List<Product> data = productService.existData();
-        if(!data.isEmpty()){
-                throw new IllegalStateException("이미 데이터가 있습니다.");
-        }
-
+        productService.existData();
         /**
          * hashmap  -> list
          * com.fasterxml.jackson.databind.exc.MismatchedInputException: Cannot deserialize value of type 'java.util.ArrayList'
