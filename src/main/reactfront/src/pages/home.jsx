@@ -24,12 +24,10 @@ const Home = () => {
     });
 
   const saveDB = () => {
+    const data = JSON.stringify(productsList);
+    const config ={"Content-Type": 'application/json'}
     API
-     .post('/product'
-            , JSON.stringify(productsList)
-            ,{ header : {
-                "Content-Type": 'application/json'
-                 }})
+     .post('/product',data,config)
      .then((response) => {
         console.log('success !!!',response.data);
      })
@@ -40,9 +38,6 @@ const Home = () => {
 
   useEffect(() => {
     getProducts(dispatch);
-    /* 이미 DB에 저장되어 있음
-
-    */
     saveDB();
 
   }, []);
