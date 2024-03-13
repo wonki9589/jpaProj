@@ -2,8 +2,7 @@ package jpaProject.jpashop.repository;
 
 
 import jakarta.persistence.EntityManager;
-import jpaProject.jpashop.domain.Member;
-import jpaProject.jpashop.domain.item.Product;
+import jpaProject.jpashop.domain.Product;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;

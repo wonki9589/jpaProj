@@ -3,31 +3,32 @@ package jpaProject.jpashop.controller;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.util.JSONPObject;
-import jpaProject.jpashop.domain.item.Product;
+
+import jpaProject.jpashop.domain.Member;
+import jpaProject.jpashop.domain.Product;
+
 import jpaProject.jpashop.repository.ProductRepository;
+import jpaProject.jpashop.repository.UserRepository;
+import jpaProject.jpashop.service.OrderService;
 import jpaProject.jpashop.service.ProductService;
 import lombok.RequiredArgsConstructor;
-import org.apache.tomcat.util.json.JSONParser;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
+
 import org.springframework.web.bind.annotation.*;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.ProtocolException;
-import java.net.URL;
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequiredArgsConstructor
-public class ProductController {
+public class ProductController<orderItemDTO> {
     private final ProductService productService;
+    private final OrderService orderService;
     private final ProductRepository productRepository;
+    private final UserRepository userRepository;
 
     @PostMapping("/api/product")
     public ResponseEntity saveProduct(@RequestBody List<Object> productDTO) {
@@ -62,4 +63,37 @@ public class ProductController {
         return ResponseEntity.ok(product);
     }
 
+    @PostMapping("/api/order/new")
+    public ResponseEntity saveOrder(@RequestBody List<Object> orderItemDTO) throws JSONException {
+        Long memberId = 0L;
+        JSONArray jsonArray = new JSONArray(orderItemDTO);
+
+        // 3 - 1부터 시작해서   i가 0보다 클떄까지  1씩 감소   // 2 , 1 , 0
+        for(int i=jsonArray.length() - 1; i>=0; i--){
+            JSONObject jsonobject = jsonArray.getJSONObject(i);
+            // 마지막 array (user 이름) 면 뽑아와서 id 반환
+            if(i == jsonArray.length() - 1 ){
+                String username = jsonobject.getString("name");
+                Member member = new Member();
+                member = userRepository.findByUsername(username);
+                memberId = member.getId() ;
+            }else{
+                // productId , quantity 뽑아서 서비스로 넘김
+                System.out.println(i +"번쨰" + jsonobject);
+                Long productId = jsonobject.getLong("id");
+                int quantity = jsonobject.getInt("quantity");
+                orderService.order(memberId,productId,quantity);
+            }
+        }
+
+//
+//           System.out.println( "orderItemDTO" +orderItemDTO.get(i).getClass());
+//            System.out.println("list" + list.get(i).getClass());
+//            int quantity = list.get(i).getQuentity();
+//
+
+ //       }
+
+        return ResponseEntity.ok(200);
+    }
 }

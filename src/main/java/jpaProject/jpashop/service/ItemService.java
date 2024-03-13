@@ -1,6 +1,6 @@
 package jpaProject.jpashop.service;
 
-import jpaProject.jpashop.domain.item.Item;
+import jpaProject.jpashop.domain.Product;
 import jpaProject.jpashop.repository.ItemRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -16,15 +16,15 @@ public class ItemService {
     private final ItemRepository itemRepository;
 
     @Transactional
-    public void saveItem(Item item){
-        itemRepository.save(item);
+    public void saveItem(Product product){
+        itemRepository.save(product);
     }
 
-    public List<Item> findItems(){
+    public List<Product> findItems(){
         return itemRepository.findAll();
     }
 
-    public Item findOne(Long itemId){
+    public Product findOne(Long itemId){
         return itemRepository.findOne(itemId);
     }
 }

@@ -1,7 +1,7 @@
 package jpaProject.jpashop.controller;
 
 
-import jpaProject.jpashop.domain.item.Book;
+import jpaProject.jpashop.domain.Product;
 import jpaProject.jpashop.service.ItemService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -15,22 +15,23 @@ public class ItemController {
 
     private ItemService itemService;
 
-    @GetMapping("/items/new")
+    @GetMapping("/product/new")
     public String createForm(Model model) {
-        model.addAttribute("form", new BookForm());
+        model.addAttribute("form", new ProductDTO());
         return "";
     }
 
 
-    @PostMapping("/item/new")
-    public String create(BookForm form) {
-        Book book = new Book();
-        book.setName(form.getName());
-        book.setPrice(form.getPrice());
-        book.setStockQuantity(form.getStockQuantity());
-        book.setAuthor(form.getAuthor());
+    @PostMapping("/product/new")
+    public String create(ProductDTO form) {
+        Product product = new Product();
+        product.setId(form.getId());
+        product.setCategory(form.getCategory());
+        product.setCategory(form.getCategory());
+        product.setName(form.getName());
+        product.setPrice(form.getPrice());
 
-        itemService.saveItem(book);
+        itemService.saveItem(product);
         return "";
     }
 }

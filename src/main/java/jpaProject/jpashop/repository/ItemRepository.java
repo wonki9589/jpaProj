@@ -1,7 +1,7 @@
 package jpaProject.jpashop.repository;
 
-import jpaProject.jpashop.domain.item.Item;
 import jakarta.persistence.EntityManager;
+import jpaProject.jpashop.domain.Product;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
@@ -13,20 +13,20 @@ public class ItemRepository {
 
     private final EntityManager em;
 
-    public void save(Item item){
-        if(item.getId() == null){
-            em.persist(item);
+    public void save(Product product){
+        if(product.getId() == null){
+            em.persist(product);
         }else{
-            em.merge(item); // update
+            em.merge(product); // update
         }
     }
 
-    public Item findOne(Long id){
-        return em.find(Item.class,id);
+    public Product findOne(Long id){
+        return em.find(Product.class,id);
     }
 
-    public List<Item> findAll(){
-        return em.createQuery("select i from Item i ",Item.class)
+    public List<Product> findAll(){
+        return em.createQuery("select i from Item i ",Product.class)
                 .getResultList();
     }
 }

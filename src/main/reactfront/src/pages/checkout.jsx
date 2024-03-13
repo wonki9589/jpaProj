@@ -167,7 +167,31 @@ const EmailStep = () => {
   const handleBackToAddress = () => {
     setCheckoutStep(checkoutDispatch, CHECKOUT_STEPS.SHIPPING);
   };
-  const handleSendEmail = () => {};
+
+  /**
+  문자 보내는 곳
+  */
+  const handleSendEmail = () => {
+       const user = { user : localStorage.getItem('username')};
+       const cartsItem = localStorage.getItem('cartItems');
+       let cartItems = JSON.parse(cartsItem);
+
+       cartItems.push(user);
+       localStorage.setItem('cartItems',JSON.stringify(cartItems));
+
+        API
+         .post('/order/new',{
+            item : cartItems
+
+         })
+         .then((response) => {
+            console.log('success !!!',response.data);
+         })
+         .catch((error) => {
+            console.log('error !!!',error.response);
+         })
+
+  };
   return (
     <div className="detail-container">
       <h2>email</h2>
@@ -224,7 +248,6 @@ const Checkout = () => {
 
   useEffect( () => {
     subTotalSum()
-    console.log("ㄱ계속 마운트 되나 ? ");
  },[subTotal])
 
   return (

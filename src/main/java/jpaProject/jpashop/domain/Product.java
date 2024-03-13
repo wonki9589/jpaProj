@@ -1,4 +1,4 @@
-package jpaProject.jpashop.domain.item;
+package jpaProject.jpashop.domain;
 
 import io.hypersistence.utils.hibernate.type.json.JsonType;
 import jakarta.persistence.*;
@@ -8,6 +8,7 @@ import org.hibernate.annotations.Type;
 import java.util.List;
 import java.util.Map;
 
+@Setter
 @Getter
 @Builder
 @NoArgsConstructor
@@ -20,7 +21,7 @@ public class Product {
     private Integer idx;
 
     @Type(JsonType.class)
-    @Column(name ="ID" ,columnDefinition = "int(11)")
+    @Column(name ="product_id" ,columnDefinition = "int(11)")
     private Integer id ;
 
     @Type(JsonType.class)
@@ -28,8 +29,8 @@ public class Product {
     private String name ;
 
     @Type(JsonType.class)
-    @Column(name ="PRICE", columnDefinition = "longtext")
-    private String price ;
+    @Column(name ="PRICE", columnDefinition = "int(11)")
+    private Integer price ;
 
     @Type(JsonType.class)
     @Column(name ="IMAGE", columnDefinition = "longtext")

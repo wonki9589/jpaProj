@@ -1,6 +1,5 @@
 package jpaProject.jpashop.domain;
 
-import jpaProject.jpashop.domain.item.Item;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -16,33 +15,36 @@ public class OrderItem {
     private Long id;
 
     @ManyToOne(fetch = LAZY)
-    @JoinColumn(name = "item_id")
-    private Item item;
+//    @JoinColumn(name = "item_id")
+//    private Item item;
+    @JoinColumn(name ="product_id")
+    private Product product;
 
     @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "order_id")
     private Order order;
 
     private int orderPrice;
-    private int count;
+
+    private int quantity;
 
     //==생성 메서드==/
-   public static OrderItem createOrderItem(Item item, int orderPrice, int count){
+   public static OrderItem createOrderItem(Product product, int orderPrice, int quantity){
        OrderItem orderItem = new OrderItem();
-       orderItem.setItem(item);
+       orderItem.setProduct(product);
        orderItem.setOrderPrice(orderPrice);
-       orderItem.setCount(count);
+       orderItem.setQuantity(quantity);
 
-       item.removeStock(count);
+//       item.removeStock(count);
        return orderItem;
    }
 
-    // ==비지니스  로직==//
-    public void cancel() {
-        getItem().addStock(count);
-    }
+//    // ==비지니스  로직==//
+//    public void cancel() {
+//        getItem().addStock(count);
+//    }
 
     public int getTotalPrice() {
-        return getOrderPrice() * getCount();
+        return getOrderPrice() * getQuantity();
     }
 }

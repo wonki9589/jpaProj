@@ -11,8 +11,10 @@ public class ProductDTO {
     private List<Object> info;
 
     private String name ;
-    private String price ;
+    private Integer price ;
 
     private String image ;
     private String category ;
+    private Integer quantity;
+    private String username;
 }

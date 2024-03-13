@@ -1,10 +1,7 @@
 package jpaProject.jpashop.service;
 
-import jpaProject.jpashop.domain.Delivery;
-import jpaProject.jpashop.domain.Member;
-import jpaProject.jpashop.domain.Order;
-import jpaProject.jpashop.domain.OrderItem;
-import jpaProject.jpashop.domain.item.Item;
+import jpaProject.jpashop.domain.*;
+import jpaProject.jpashop.domain.Product;
 import jpaProject.jpashop.repository.ItemRepository;
 import jpaProject.jpashop.repository.MemberRepository;
 import jpaProject.jpashop.repository.OrderRepository;
@@ -25,18 +22,19 @@ public class OrderService {
      * 주문
      */
     @Transactional
-    public Long order(Long memberId , Long itemId , int count){
+    public Long order(Long memberId , Long productId , int quantity){
 
         // 엔티티 조회
         Member member = memberRepository.findOne(memberId);
-        Item item = itemRepository.findOne(itemId);
+        Product product = itemRepository.findOne(productId);
 
         //배송정보
         Delivery delivery = new Delivery();
         delivery.setAddress(member.getAddress());
+        delivery.setStatus(DeliveryStatus.COMP);
 
         //주문상품 생성
-        OrderItem orderItem = OrderItem.createOrderItem(item, item.getPrice(), count);
+        OrderItem orderItem = OrderItem.createOrderItem(product, product.getPrice(), quantity);
 
         //주문 생성
         Order order = Order.createOrder(member, delivery, orderItem);
@@ -48,14 +46,14 @@ public class OrderService {
     }
     /**
      * 주문 취소
+     *     @Transactional
+     *     public void cancelOrder(Long orderId){
+     *         //주문 엔티티 조회
+     *         Order order = orderRepository.findOne(orderId);
+     *         //주문 취소
+     *         order.cancel();
+     *     }
      */
-    @Transactional
-    public void cancelOrder(Long orderId){
-        //주문 엔티티 조회
-        Order order = orderRepository.findOne(orderId);
-        //주문 취소
-        order.cancel();
-    }
 
     /**
      * 주문 검색
