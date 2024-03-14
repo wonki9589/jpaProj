@@ -102,7 +102,7 @@ public class ProductController<orderItemDTO> {
         // json 한줄씩 오는거를 두줄로 합치고 넘겨서 html 에서 반복문으로 뽑을수가 있나 ?
         System.out.println("jsonMap : "+ jsonMap);
         System.out.println("email : "+ email);
-        productService.settingMail(jsonMap,email);
+        productService.sendReservationEmail(jsonMap,email);
         return ResponseEntity.ok(200);
     }
 

@@ -65,6 +65,7 @@ public class ProductService {
             mimeMessageHelper.setText(htmlContent(jsonMap), true); // 메일 본문 내용, HTML 여부
 
             log.info("Success");
+
             javaMailSender.send(message);
         }catch (MessagingException e) {
             e.printStackTrace();
@@ -72,30 +73,35 @@ public class ProductService {
         return "send Ok";
     }
 
-    // 회원가입 이메일 인증 - 요청 시 body로 인증번호 반환하도록 작성하였음
-    // 주문상품이랑 상품이미지 한꺼번에 받아서 메일안에다가 넣어야해
-    public ResponseEntity settingMail(Map jsonMap,String email) {
-        EmailMessage emailMessage = EmailMessage.builder()
-                //.to(emailPostDto.getEmail())
-                .to(email)
-                .subject("[Curly] 주문 상품 예약 메일입니다.")
-                .build();
-
-        sendReservationEmail(jsonMap,email);
-
-        return ResponseEntity.ok(sendReservationEmail(jsonMap,email));
-    }
-
-
     private String htmlContent(Map jsonMap){
         StringBuffer sb = new StringBuffer();
+        StringBuffer jsonName = new StringBuffer();
+        StringBuffer jsonImage = new StringBuffer();
+        // map 으로 들어오는거 나눠서 넣어야함
+        for(Object key : jsonMap.keySet()){
+            Map json = (Map) jsonMap.get(key);
+            for(Object k : json.keySet() ){
+                //System.out.println("  key: " + k + " value: " +json.get(k) );
+                if(k == "name") jsonName.append("상품이름 : "+json.get(k)+ "<br>");
+                if(k == "image") jsonName.append("<img  src='" + json.get(k) + "'"+ " width='200' height='200'" +" <br>");
+                if(k == "id") jsonName.append("<br>");
+                if(k == "quantity") jsonName.append("상품수량 : "+json.get(k)+ " 개" +"<br>");
+                if(k == "price") jsonName.append("상품 가격 : "+json.get(k)+ " $"+" <br>");
+
+            }
+                jsonName.append("<br>");
+                jsonName.append("<br>");
+        }
+        jsonName.toString();
+        System.out.println(jsonName);
 
         sb.append("<html><body>");
         sb.append("<meta http-equiv='Content-Type' content='text/html; charset=utf-8'>");
-        sb.append(jsonMap + "<br>");
-        sb.append("왜 여려개가 가는거지 ?  .<br>");
-        sb.append("<img  src='https://res.cloudinary.com/sivadass/image/upload/v1493620045/dummy-products/tomato.jpg' /><br>");
-        sb.append("<a href='https://www.naver.com'>상품보기</a>");
+        sb.append("<br>");
+        sb.append(jsonName + "<br>");
+        sb.append("문의 및 기타사항은 링크를 참고해주세요 ! <br>");
+        sb.append("<a href='https://www.naver.com'>문의 사항 </a>");
+        sb.append("<br>");
         sb.append("</body></html>");
         String str=sb.toString();
         return str;
