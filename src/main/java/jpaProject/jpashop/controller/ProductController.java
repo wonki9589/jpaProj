@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import jpaProject.jpashop.domain.EmailMessage;
 import jpaProject.jpashop.domain.Member;
 import jpaProject.jpashop.domain.Product;
 
@@ -85,15 +86,21 @@ public class ProductController<orderItemDTO> {
                 orderService.order(memberId,productId,quantity);
             }
         }
-
-//
-//           System.out.println( "orderItemDTO" +orderItemDTO.get(i).getClass());
-//            System.out.println("list" + list.get(i).getClass());
-//            int quantity = list.get(i).getQuentity();
-//
-
- //       }
-
         return ResponseEntity.ok(200);
+    }
+
+
+    // 회원가입 이메일 인증 - 요청 시 body로 인증번호 반환하도록 작성하였음
+    @PostMapping("/api/email")
+    public ResponseEntity sendMail(@RequestBody EmailPostDto emailPostDto) {
+        EmailMessage emailMessage = EmailMessage.builder()
+                //.to(emailPostDto.getEmail())
+                .to("tubewonki@gmail.com")
+                .subject("[Curly] 주문 상품 예약 메일입니다.")
+                .build();
+
+       productService.sendReservationEmail(emailMessage);
+
+        return ResponseEntity.ok(productService.sendReservationEmail(emailMessage));
     }
 }
