@@ -1,6 +1,10 @@
 package jpaProject.jpashop.service;
 
 
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.mail.Message;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.InternetAddress;
@@ -10,14 +14,20 @@ import jpaProject.jpashop.domain.EmailMessage;
 import jpaProject.jpashop.domain.Product;
 import jpaProject.jpashop.repository.ManageProductRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.json.JSONObject;
+import org.springframework.http.ResponseEntity;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMailMessage;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
+import java.util.Map;
 
 @Service
 @Transactional(readOnly = true)
@@ -44,45 +54,73 @@ public class ProductService {
     /**
      * MimeMessage Gmail
     * */
-    public String sendReservationEmail(EmailMessage emailMessage){
+    public String sendReservationEmail(Map jsonMap, String email){
 
         MimeMessage message = javaMailSender.createMimeMessage();
         try {
             MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(message, false, "UTF-8");
 
-            mimeMessageHelper.setTo(emailMessage.getTo()); // 메일 수신자
-            mimeMessageHelper.setSubject(emailMessage.getSubject()); // 메일 제목
-            mimeMessageHelper.setText(htmlContent(), true); // 메일 본문 내용, HTML 여부
+            mimeMessageHelper.setTo(email); // 메일 수신자
+            mimeMessageHelper.setSubject("[Curly] 주문 상품 예약 메일입니다."); // 메일 제목
+            mimeMessageHelper.setText(htmlContent(jsonMap), true); // 메일 본문 내용, HTML 여부
 
             log.info("Success");
             javaMailSender.send(message);
         }catch (MessagingException e) {
             e.printStackTrace();
-//            //제목
-//            message.setSubject("예약 확인 메일입니다.");
-//            // html 내용
-//            String htmlStr =  htmlContent();
-//            //내용 설정(인코딩)
-//            message.setText(htmlStr,"UTF-8","html");
-//            // To 설정
-//            message.addRecipient(Message.RecipientType.TO, new InternetAddress("tubewonki95891@gmail.com","Culry","UTF-8"));
-//
-//            javaMailSender.send(message);
         }
         return "send Ok";
     }
 
-    private String htmlContent(){
+    // 회원가입 이메일 인증 - 요청 시 body로 인증번호 반환하도록 작성하였음
+    // 주문상품이랑 상품이미지 한꺼번에 받아서 메일안에다가 넣어야해
+    public ResponseEntity settingMail(Map jsonMap,String email) {
+        EmailMessage emailMessage = EmailMessage.builder()
+                //.to(emailPostDto.getEmail())
+                .to(email)
+                .subject("[Curly] 주문 상품 예약 메일입니다.")
+                .build();
+
+        sendReservationEmail(jsonMap,email);
+
+        return ResponseEntity.ok(sendReservationEmail(jsonMap,email));
+    }
+
+
+    private String htmlContent(Map jsonMap){
         StringBuffer sb = new StringBuffer();
+
         sb.append("<html><body>");
         sb.append("<meta http-equiv='Content-Type' content='text/html; charset=utf-8'>");
-        sb.append("<h1>"+"예약 상품"+"<h1><br>");
-        sb.append("신간 도서를 소개합니다.<br><br>");
+        sb.append(jsonMap + "<br>");
+        sb.append("왜 여려개가 가는거지 ?  .<br>");
         sb.append("<img  src='https://res.cloudinary.com/sivadass/image/upload/v1493620045/dummy-products/tomato.jpg' /><br>");
         sb.append("<a href='https://www.naver.com'>상품보기</a>");
         sb.append("</body></html>");
         String str=sb.toString();
         return str;
+    }
+
+    /**
+     * @apiNote JSONObject를 Map<String, String> 형식으로 변환처리.
+     * @return Map<String,String>
+     * **/
+    public Map<String, Object> getMapFromJsonObject(JSONObject jsonObj){
+        Map<String, Object> map = null;
+
+        try {
+            map = new ObjectMapper().readValue(jsonObj.toString(), Map.class);
+        } catch (JsonParseException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (JsonMappingException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return map;
     }
 
 }

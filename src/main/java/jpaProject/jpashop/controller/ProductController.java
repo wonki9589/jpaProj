@@ -21,7 +21,10 @@ import org.springframework.http.ResponseEntity;
 
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequiredArgsConstructor
@@ -67,6 +70,8 @@ public class ProductController<orderItemDTO> {
     @PostMapping("/api/order/new")
     public ResponseEntity saveOrder(@RequestBody List<Object> orderItemDTO) throws JSONException {
         Long memberId = 0L;
+        String email = "";
+        Map<String, Object> jsonMap = new HashMap<String, Object>() ;
         JSONArray jsonArray = new JSONArray(orderItemDTO);
 
         // 3 - 1부터 시작해서   i가 0보다 클떄까지  1씩 감소   // 2 , 1 , 0
@@ -78,29 +83,29 @@ public class ProductController<orderItemDTO> {
                 Member member = new Member();
                 member = userRepository.findByUsername(username);
                 memberId = member.getId() ;
+                email = member.getEmail();
+
             }else{
                 // productId , quantity 뽑아서 서비스로 넘김
-                System.out.println(i +"번쨰" + jsonobject);
+               // System.out.println(i +"번쨰" + jsonobject);
+
                 Long productId = jsonobject.getLong("id");
                 int quantity = jsonobject.getInt("quantity");
-                orderService.order(memberId,productId,quantity);
+//                orderService.order(memberId,productId,quantity);
+
+                // json object -> map
+                Map<String,Object> objectMap = productService.getMapFromJsonObject(jsonobject);
+                jsonMap.put(String.valueOf(i),objectMap);
             }
         }
+        // 한줄씩 상품정보가 들어와 여기서 어디에다가 담고 이메일 서비스로 넘기자
+        // json 한줄씩 오는거를 두줄로 합치고 넘겨서 html 에서 반복문으로 뽑을수가 있나 ?
+        System.out.println("jsonMap : "+ jsonMap);
+        System.out.println("email : "+ email);
+        productService.settingMail(jsonMap,email);
         return ResponseEntity.ok(200);
     }
 
 
-    // 회원가입 이메일 인증 - 요청 시 body로 인증번호 반환하도록 작성하였음
-    @PostMapping("/api/email")
-    public ResponseEntity sendMail(@RequestBody EmailPostDto emailPostDto) {
-        EmailMessage emailMessage = EmailMessage.builder()
-                //.to(emailPostDto.getEmail())
-                .to("tubewonki@gmail.com")
-                .subject("[Curly] 주문 상품 예약 메일입니다.")
-                .build();
 
-       productService.sendReservationEmail(emailMessage);
-
-        return ResponseEntity.ok(productService.sendReservationEmail(emailMessage));
-    }
 }
