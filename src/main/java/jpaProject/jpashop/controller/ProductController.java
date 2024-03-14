@@ -74,10 +74,9 @@ public class ProductController<orderItemDTO> {
         Map<String, Object> jsonMap = new HashMap<String, Object>() ;
         JSONArray jsonArray = new JSONArray(orderItemDTO);
 
-        // 3 - 1부터 시작해서   i가 0보다 클떄까지  1씩 감소   // 2 , 1 , 0
         for(int i=jsonArray.length() - 1; i>=0; i--){
             JSONObject jsonobject = jsonArray.getJSONObject(i);
-            // 마지막 array (user 이름) 면 뽑아와서 id 반환
+            /** 마지막 array index (user 이름)  memberid 반환 */
             if(i == jsonArray.length() - 1 ){
                 String username = jsonobject.getString("name");
                 Member member = new Member();
@@ -86,26 +85,18 @@ public class ProductController<orderItemDTO> {
                 email = member.getEmail();
 
             }else{
-                // productId , quantity 뽑아서 서비스로 넘김
-               // System.out.println(i +"번쨰" + jsonobject);
-
+                /** order backend */
                 Long productId = jsonobject.getLong("id");
                 int quantity = jsonobject.getInt("quantity");
-//                orderService.order(memberId,productId,quantity);
+                orderService.order(memberId,productId,quantity);
 
-                // json object -> map
+                /** json object -> map */
                 Map<String,Object> objectMap = productService.getMapFromJsonObject(jsonobject);
                 jsonMap.put(String.valueOf(i),objectMap);
             }
         }
-        // 한줄씩 상품정보가 들어와 여기서 어디에다가 담고 이메일 서비스로 넘기자
-        // json 한줄씩 오는거를 두줄로 합치고 넘겨서 html 에서 반복문으로 뽑을수가 있나 ?
-        System.out.println("jsonMap : "+ jsonMap);
-        System.out.println("email : "+ email);
+        /** send Gmail */
         productService.sendReservationEmail(jsonMap,email);
         return ResponseEntity.ok(200);
     }
-
-
-
 }
