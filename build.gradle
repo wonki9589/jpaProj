@@ -50,7 +50,6 @@ dependencies {
 	* 2/27 SMTP
 	*/
 	implementation 'org.springframework.boot:spring-boot-starter-mail'
-
 	/*
 		3/13 JSON org.json 추가
 	* */
