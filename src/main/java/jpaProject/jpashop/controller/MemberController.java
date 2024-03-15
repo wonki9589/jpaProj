@@ -26,14 +26,16 @@ import java.util.Arrays;
 @RequiredArgsConstructor
 public class MemberController {
 
+    private final MemberRepository memberRepository;
     private final UserRepository userRepository;
     private final MemberService memberService;
 
     @ResponseBody
     @GetMapping("/api/member")
     public ResponseEntity<Member> showInfo(@RequestParam(name = "username") String username) {
-        userRepository.findByUsername(username);
 
+       // memberRepository.findByUserName(username);
+        userRepository.findByUsername(username);
         return ResponseEntity.ok(userRepository.findByUsername(username));
     }
 

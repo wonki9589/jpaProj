@@ -172,25 +172,28 @@ const EmailStep = () => {
   문자 보내는 곳
   */
   const handleSendEmail = () => {
-       const user = { user : localStorage.getItem('username')};
-       const cartsItem = localStorage.getItem('cartItems');
-       let cartItems = JSON.parse(cartsItem);
+       const username = { username : localStorage.getItem('username')};
+       const beforeCartsItem = localStorage.getItem('cartItems');
+       let cartItems = JSON.parse(beforeCartsItem);
 
-       cartItems.push(user);
-       localStorage.setItem('cartItems',JSON.stringify(cartItems));
+       if(cartItems.length == 0){
+           alert("상품 선택 후 클릭해주세요.");
+           return false;
+       }
+       cartItems.push(username);
 
-        API
-         .post('/order/new',{
-            item : cartItems
-
-         })
-         .then((response) => {
-            console.log('success !!!',response.data);
-         })
-         .catch((error) => {
-            console.log('error !!!',error.response);
-         })
-
+    API
+     .post('/order/new', cartItems)
+     .then((response) => {
+        console.log('success !!!',response.data);
+        alert("고객님의 이메일로 예약 정보를 전송하였습니다.");
+     })
+     .catch((error) => {
+        console.log('error !!!',error.response);
+         alert("시스템 오류");
+     })
+     // username delete 후 기존 카트 아이탬으로 세팅
+     localStorage.setItem('cartItems',beforeCartsItem);
   };
   return (
     <div className="detail-container">

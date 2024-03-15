@@ -1,5 +1,6 @@
 package jpaProject.jpashop.domain;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,6 +21,7 @@ public class Order {
     private Long id;
 
     @ManyToOne(fetch = LAZY)
+
     @JoinColumn(name = "member_id")
     private Member member;
 

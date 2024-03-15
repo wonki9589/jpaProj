@@ -78,7 +78,7 @@ public class ProductController<orderItemDTO> {
             JSONObject jsonobject = jsonArray.getJSONObject(i);
             /** 마지막 array index (user 이름)  memberid 반환 */
             if(i == jsonArray.length() - 1 ){
-                String username = jsonobject.getString("name");
+                String username = jsonobject.getString("username");
                 Member member = new Member();
                 member = userRepository.findByUsername(username);
                 memberId = member.getId() ;

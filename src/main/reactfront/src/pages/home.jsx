@@ -25,13 +25,15 @@ const Home = () => {
 
   const saveDB = () => {
     const data = JSON.stringify(productsList);
-    const config ={"Content-Type": 'application/json'}
     API
-     .post('/product',data,config)
+     .post('/product',data)
      .then((response) => {
         console.log('success !!!',response.data);
      })
      .catch((error) => {
+        if(error.response.status == 500){
+            console.log(error.response.data.message);
+        }
         console.log('error !!!',error.response);
      })
   }
